@@ -11,37 +11,20 @@ protocol EventStoreProtocol {
 class EventStore: EventStoreProtocol {
 
   var events: [Event] = []
+  private let eventsSerialiser: EventsPersistenceHandlerProtocol
 
-  init() {
-    events = load()
+  init(eventsSerialiser: EventsPersistenceHandlerProtocol = EventsPersistenceHandler()) {
+    self.eventsSerialiser = eventsSerialiser
+    events = eventsSerialiser.load()
   }
 
   func add(_ event: Event) {
     events.append(event)
-    save(events)
+    eventsSerialiser.save(events)
   }
 
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
-    save(events)
-  }
-
-  func save(_ events: [Event]) {
-    do {
-      let data = try JSONEncoder().encode(events)
-      try data.write(to: FileManager.default.eventsURL())
-    } catch {
-      print("\(#file) \(#line), #Error: \(error)")
-    }
-  }
-
-  func load() -> [Event] {
-    do {
-      let data = try Data(contentsOf: FileManager.default.eventsURL())
-      return try JSONDecoder().decode([Event].self, from: data)
-    } catch {
-      print("\(#file) \(#line), #Error: \(error)")
-      return []
-    }
+    eventsSerialiser.save(events)
   }
 }
