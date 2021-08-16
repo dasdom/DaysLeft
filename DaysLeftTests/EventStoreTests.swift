@@ -18,5 +18,6 @@ class EventStoreTests: XCTestCase {
     // assert
     XCTAssertEqual(store.events.first, event)
     store.remove(event: event)
+    XCTAssertEqual(store.events.count, 0)
   }
 }
