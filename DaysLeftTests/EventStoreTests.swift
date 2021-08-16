@@ -9,7 +9,7 @@ class EventStoreTests: XCTestCase {
 
   func test_add_shouldAddEventToEvents() {
     // arrange
-    let store = EventStore()
+    let store = EventStore(eventsSerialiser: EventsPersistenceHandlerProtocolDummy())
 
     // act
     let event = Event(name: "Dummy", date: Date())

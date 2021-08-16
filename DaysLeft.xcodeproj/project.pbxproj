@@ -18,6 +18,7 @@
 		F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CCC26C9A7580020B48C /* FileManagerExtension.swift */; };
 		F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CDD26CA332C0020B48C /* EventStoreTests.swift */; };
 		F2721CE026CABE160020B48C /* EventsPersistenceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CDF26CABE160020B48C /* EventsPersistenceHandler.swift */; };
+		F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		F2721CD726CA31E30020B48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2721CDD26CA332C0020B48C /* EventStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreTests.swift; sourceTree = "<group>"; };
 		F2721CDF26CABE160020B48C /* EventsPersistenceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPersistenceHandler.swift; sourceTree = "<group>"; };
+		F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPersistenceHandlerProtocolDummy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +124,18 @@
 			isa = PBXGroup;
 			children = (
 				F2721CDD26CA332C0020B48C /* EventStoreTests.swift */,
+				F2721CE326CAC1DE0020B48C /* Doubles */,
 				F2721CD726CA31E30020B48C /* Info.plist */,
 			);
 			path = DaysLeftTests;
+			sourceTree = "<group>";
+		};
+		F2721CE326CAC1DE0020B48C /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */,
+			);
+			path = Doubles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */,
+				F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
