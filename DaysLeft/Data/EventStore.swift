@@ -23,6 +23,7 @@ class EventStore: EventStoreProtocol {
 
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
+    save(events)
   }
 
   func save(_ events: [Event]) {
