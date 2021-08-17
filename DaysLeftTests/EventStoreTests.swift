@@ -40,4 +40,27 @@ class EventStoreTests: XCTestCase {
     // assert
     XCTAssertEqual(sut.events.count, 0)
   }
+
+  func test_remainingDays_whenEventIsIn42Days_shouldBe42() {
+    // arrange
+    let event = event(name: "Dummy", yearsInPast: 1, daysInFuture: 42)
+
+    // act
+    let result = sut.remainingDaysUntil(event)
+
+    // assert
+    XCTAssertEqual(result, 42)
+  }
+}
+
+extension EventStoreTests {
+  func event(name: String, yearsInPast: Int = 0, daysInFuture: Int = 0) -> Event {
+    return Event(name: name, date: date(yearsInPast: yearsInPast, daysInFuture: daysInFuture))
+  }
+
+  func date(yearsInPast: Int = 0, daysInFuture: Int = 0) -> Date {
+    let calendar = Calendar(identifier: .gregorian)
+    let dateYearsInPast = calendar.date(byAdding: .year, value: -yearsInPast, to: Date())!
+    return calendar.date(byAdding: .day, value: daysInFuture, to: dateYearsInPast)!
+  }
 }

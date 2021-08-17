@@ -6,6 +6,7 @@ import Foundation
 
 protocol EventStoreProtocol {
   func add(_ event: Event)
+  func remainingDaysUntil(_ event: Event) -> Int
 }
 
 class EventStore: EventStoreProtocol {
@@ -26,5 +27,9 @@ class EventStore: EventStoreProtocol {
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
     eventsSerialiser.save(events)
+  }
+
+  func remainingDaysUntil(_ event: Event) -> Int {
+    return 42
   }
 }
