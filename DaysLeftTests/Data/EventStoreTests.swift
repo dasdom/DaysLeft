@@ -25,20 +25,20 @@ class EventStoreTests: XCTestCase {
     sut.add(event)
 
     // assert
-    XCTAssertEqual(sut.events.first, event)
+    XCTAssertEqual(sut.eventAt(index: 0), event)
   }
 
   func test_remove_shouldRemoveEventFromEvents() {
     // arrange
     let event = Event(name: "Dummy", date: Date())
     sut.add(event)
-    XCTAssertEqual(sut.events.count, 1)
+    XCTAssertEqual(sut.numberOfEvents(), 1)
 
     // act
     sut.remove(event: event)
 
     // assert
-    XCTAssertEqual(sut.events.count, 0)
+    XCTAssertEqual(sut.numberOfEvents(), 0)
   }
 
   func test_remainingDays_whenEventIsToday_shouldBe0() {

@@ -7,11 +7,12 @@ import Foundation
 protocol EventStoreProtocol {
   func add(_ event: Event)
   func remainingDaysUntil(_ event: Event) -> Int
+  func eventAt(index: Int) -> Event?
 }
 
 class EventStore: EventStoreProtocol {
 
-  var events: [Event] = []
+  private var events: [Event] = []
   private let eventsSerialiser: EventsPersistenceHandlerProtocol
 
   init(eventsSerialiser: EventsPersistenceHandlerProtocol = EventsPersistenceHandler()) {
@@ -27,6 +28,17 @@ class EventStore: EventStoreProtocol {
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
     eventsSerialiser.save(events)
+  }
+
+  func eventAt(index: Int) -> Event? {
+    guard index < events.count else {
+      return nil
+    }
+    return events[index]
+  }
+
+  func numberOfEvents() -> Int {
+    return events.count
   }
 
   func remainingDaysUntil(_ event: Event) -> Int {

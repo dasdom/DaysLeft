@@ -123,7 +123,7 @@
 		F2721CD426CA31E30020B48C /* DaysLeftTests */ = {
 			isa = PBXGroup;
 			children = (
-				F2721CDD26CA332C0020B48C /* EventStoreTests.swift */,
+				F2721CED26CD693D0020B48C /* Data */,
 				F2721CE326CAC1DE0020B48C /* Doubles */,
 				F2721CD726CA31E30020B48C /* Info.plist */,
 			);
@@ -136,6 +136,14 @@
 				F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */,
 			);
 			path = Doubles;
+			sourceTree = "<group>";
+		};
+		F2721CED26CD693D0020B48C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F2721CDD26CA332C0020B48C /* EventStoreTests.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
