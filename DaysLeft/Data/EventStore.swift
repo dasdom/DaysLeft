@@ -30,6 +30,23 @@ class EventStore: EventStoreProtocol {
   }
 
   func remainingDaysUntil(_ event: Event) -> Int {
-    return 42
+    let calendar = Calendar.current
+    let eventDateComponents = calendar.dateComponents([.day, .month], from: event.date)
+    let now = Date()
+    let nowComponents = calendar.dateComponents([.day, .month], from: now)
+    if eventDateComponents == nowComponents {
+      return 0
+    }
+
+    let startOfToday = calendar.startOfDay(for: now)
+    guard let next = calendar.nextDate(after: startOfToday, matching: eventDateComponents, matchingPolicy: .nextTime) else {
+      return 0
+    }
+
+    guard let remainingDays = calendar.dateComponents([.day], from: startOfToday, to: next).day else {
+      return 0
+    }
+
+    return remainingDays
   }
 }

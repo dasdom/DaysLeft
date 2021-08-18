@@ -41,6 +41,17 @@ class EventStoreTests: XCTestCase {
     XCTAssertEqual(sut.events.count, 0)
   }
 
+  func test_remainingDays_whenEventIsToday_shouldBe0() {
+    // arrange
+    let event = event(name: "Dummy", yearsInPast: 1, daysInFuture: 0)
+
+    // act
+    let result = sut.remainingDaysUntil(event)
+
+    // assert
+    XCTAssertEqual(result, 0)
+  }
+
   func test_remainingDays_whenEventIsIn42Days_shouldBe42() {
     // arrange
     let event = event(name: "Dummy", yearsInPast: 1, daysInFuture: 42)
