@@ -62,6 +62,27 @@ class EventStoreTests: XCTestCase {
     // assert
     XCTAssertEqual(result, 42)
   }
+
+  func test_addingEvent_shouldPublishChange() {
+    // arrange
+    let publisherExpectation = expectation(description: "Wait for publisher")
+    var receivedEvents: [Event] = []
+    let token = sut.eventsPublisher
+      .dropFirst()
+      .sink { events in
+      receivedEvents = events
+      publisherExpectation.fulfill()
+    }
+
+    // act
+    let event = Event(name: "Dummy", date: Date())
+    sut.add(event)
+
+    // assert
+    wait(for: [publisherExpectation], timeout: 1)
+    token.cancel()
+    XCTAssertEqual(receivedEvents, [event])
+  }
 }
 
 extension EventStoreTests {
