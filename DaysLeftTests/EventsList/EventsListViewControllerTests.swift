@@ -21,4 +21,15 @@ class EventsListViewControllerTests: XCTestCase {
   func test_shouldBeLoadedFromStoryboard() {
     XCTAssertNotNil(sut)
   }
+
+  func test_loading_shouldAddTableView() {
+    // arrange
+    sut.loadViewIfNeeded()
+
+    // act
+    let tableViewIsSubview = sut.tableView?.isDescendant(of: sut.view)
+
+    // assert
+    XCTAssertEqual(tableViewIsSubview, true, "tableView should be subview")
+  }
 }
