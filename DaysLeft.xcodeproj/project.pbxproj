@@ -23,6 +23,7 @@
 		F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF126CD9CA80020B48C /* EventsListViewController.swift */; };
 		F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */; };
 		F2721CF726CEA4380020B48C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF626CEA4380020B48C /* EventCell.swift */; };
+		F2721CF926CEB4DE0020B48C /* EventCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF826CEB4DE0020B48C /* EventCellTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		F2721CF126CD9CA80020B48C /* EventsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreProtocolMock.swift; sourceTree = "<group>"; };
 		F2721CF626CEA4380020B48C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		F2721CF826CEB4DE0020B48C /* EventCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				F2721CEE26CD9C3A0020B48C /* EventsListViewControllerTests.swift */,
+				F2721CF826CEB4DE0020B48C /* EventCellTests.swift */,
 			);
 			path = EventsList;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2721CEF26CD9C3A0020B48C /* EventsListViewControllerTests.swift in Sources */,
+				F2721CF926CEB4DE0020B48C /* EventCellTests.swift in Sources */,
 				F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */,
 				F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */,
 				F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */,

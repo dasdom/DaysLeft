@@ -12,6 +12,8 @@ class EventCell: UITableViewCell {
     nameLabel = UILabel()
 
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+    contentView.addSubview(nameLabel)
   }
   
   required init?(coder: NSCoder) {
