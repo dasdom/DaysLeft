@@ -47,4 +47,19 @@ class EventsListViewControllerTests: XCTestCase {
     // assert
     XCTAssertEqual(result, numberOfRows)
   }
+
+  func test_cellForRow_shouldSetName() throws {
+    // arrange
+    let eventStoreMock = EventStoreProtocolMock()
+    eventStoreMock.eventAtReturnValue = Event(name: "Dummy", date: Date())
+    sut.eventStore = eventStoreMock
+    sut.loadViewIfNeeded()
+
+    // act
+    let indexPath = IndexPath(row: 0, section: 0)
+    let cell = try XCTUnwrap(sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as? EventCell)
+
+    // assert
+    XCTAssertEqual(cell.nameLabel.text, "Dummy")
+  }
 }

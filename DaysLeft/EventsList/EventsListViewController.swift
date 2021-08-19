@@ -13,6 +13,8 @@ class EventsListViewController: UIViewController {
     super.viewDidLoad()
 
     tableView.dataSource = self
+
+    tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
   }
 }
 
@@ -26,7 +28,14 @@ extension EventsListViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    return UITableViewCell()
+
+    let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
+
+    if let event = eventStore?.eventAt(index: indexPath.row) {
+      cell.nameLabel.text = event.name
+    }
+
+    return cell
   }
 
 
