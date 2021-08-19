@@ -9,6 +9,7 @@ protocol EventStoreProtocol {
   var eventsPublisher: Published<[Event]>.Publisher { get }
   func add(_ event: Event)
   func remainingDaysUntil(_ event: Event) -> Int
+  func numberOfEvents() -> Int
   func eventAt(index: Int) -> Event?
 }
 

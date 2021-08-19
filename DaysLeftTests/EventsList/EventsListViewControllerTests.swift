@@ -32,4 +32,19 @@ class EventsListViewControllerTests: XCTestCase {
     // assert
     XCTAssertEqual(tableViewIsSubview, true, "tableView should be subview")
   }
+
+  func test_numberOfRows_shouldCallEventStore() {
+    // arrange
+    let eventStoreMock = EventStoreProtocolMock()
+    let numberOfRows = 23
+    eventStoreMock.numberOfEventsReturnValue = numberOfRows
+    sut.eventStore = eventStoreMock
+    sut.loadViewIfNeeded()
+
+    // act
+    let result = sut.tableView.dataSource?.tableView(sut.tableView, numberOfRowsInSection: 0)
+
+    // assert
+    XCTAssertEqual(result, numberOfRows)
+  }
 }
