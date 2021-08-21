@@ -62,4 +62,21 @@ class EventsListViewControllerTests: XCTestCase {
     // assert
     XCTAssertEqual(cell.nameLabel.text, "Dummy")
   }
+
+  func test_cellForRow_shouldSetRemainingDays() throws {
+    // arrange
+    let eventStoreMock = EventStoreProtocolMock()
+    let notUsedDate = Date()
+    eventStoreMock.eventAtReturnValue = Event(name: "Dummy", date: notUsedDate)
+    eventStoreMock.remainingDaysReturnValue = 42
+    sut.eventStore = eventStoreMock
+    sut.loadViewIfNeeded()
+
+    // act
+    let indexPath = IndexPath(row: 0, section: 0)
+    let cell = try XCTUnwrap(sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as? EventCell)
+
+    // assert
+    XCTAssertEqual(cell.remainingDaysLabel.text, "42")
+  }
 }

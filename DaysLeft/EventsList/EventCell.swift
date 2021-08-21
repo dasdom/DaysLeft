@@ -6,10 +6,12 @@ import UIKit
 
 class EventCell: UITableViewCell {
   let nameLabel: UILabel
+  let remainingDaysLabel: UILabel
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
     nameLabel = UILabel()
+    remainingDaysLabel = UILabel()
 
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 

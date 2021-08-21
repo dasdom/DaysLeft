@@ -31,8 +31,9 @@ extension EventsListViewController: UITableViewDataSource {
 
     let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
 
-    if let event = eventStore?.eventAt(index: indexPath.row) {
+    if let eventStore = eventStore, let event = eventStore.eventAt(index: indexPath.row) {
       cell.nameLabel.text = event.name
+      cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
     }
 
     return cell
