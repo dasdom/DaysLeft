@@ -22,4 +22,10 @@ class EventCellTests: XCTestCase {
     XCTAssertTrue(sut.nameLabel.isDescendant(of: sut.contentView),
                   "nameLabel is not descendant of contentView")
   }
+
+  func test_init_shouldAddRemainingDaysLabelToContentView() {
+    // assert
+    XCTAssertTrue(sut.remainingDaysLabel.isDescendant(of: sut.contentView),
+                  "remainingDaysLabel is not descendant of contentView")
+  }
 }

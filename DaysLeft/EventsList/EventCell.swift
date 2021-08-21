@@ -16,6 +16,7 @@ class EventCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
     contentView.addSubview(nameLabel)
+    contentView.addSubview(remainingDaysLabel)
   }
   
   required init?(coder: NSCoder) {
