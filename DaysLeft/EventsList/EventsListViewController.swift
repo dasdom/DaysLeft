@@ -5,46 +5,41 @@
 import UIKit
 import Combine
 
+enum Section: Hashable {
+  case main
+}
+
 class EventsListViewController: UIViewController {
 
   @IBOutlet var tableView: UITableView!
+  private var dataSource: UITableViewDiffableDataSource<Section, UUID>?
   var eventStore: EventStoreProtocol?
   var token: AnyCancellable?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    tableView.dataSource = self
+   tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
 
-    tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
+    dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: tableView, cellProvider: { tableView, indexPath, uuid in
+      let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
+      if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
+        cell.nameLabel.text = event.name
+        cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
+      }
+      return cell
+    })
 
     token = eventStore?.eventsPublisher
-      .sink(receiveValue: { [weak self] _ in
-        self?.tableView.reloadData()
+      .sink(receiveValue: { [weak self] events in
+        self?.newSnapshot(events)
       })
   }
-}
 
-extension EventsListViewController: UITableViewDataSource {
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let eventStore = eventStore else {
-      return 0
-    }
-    return eventStore.numberOfEvents()
+  func newSnapshot(_ events: [Event]) {
+    var snapshot = NSDiffableDataSourceSnapshot<Section , UUID>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(events.map({ $0.id }))
+    dataSource?.apply(snapshot)
   }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-    let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
-
-    if let eventStore = eventStore, let event = eventStore.eventAt(index: indexPath.row) {
-      cell.nameLabel.text = event.name
-      cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
-    }
-
-    return cell
-  }
-
-
 }

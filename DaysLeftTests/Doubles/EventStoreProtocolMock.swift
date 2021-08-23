@@ -8,7 +8,11 @@ import Combine
 
 class EventStoreProtocolMock: EventStoreProtocol {
   var eventsPublisher = CurrentValueSubject<[Event], Never>([])
-  @Published var events: [Event] = []
+  var events: [Event] = [] {
+    didSet {
+      eventsPublisher.send(events)
+    }
+  }
   var addEventReceivedValue: Event?
   var remainingDaysReturnValue: Int = 0
   var numberOfEventsCallCount = 0
@@ -17,6 +21,7 @@ class EventStoreProtocolMock: EventStoreProtocol {
 
   func add(_ event: Event) {
     addEventReceivedValue = event
+    events.append(event)
   }
 
   func remainingDaysUntil(_ event: Event) -> Int {
@@ -29,6 +34,6 @@ class EventStoreProtocolMock: EventStoreProtocol {
   }
 
   func eventAt(index: Int) -> Event? {
-    return eventAtReturnValue
+    return eventAtReturnValue ?? events.last
   }
 }

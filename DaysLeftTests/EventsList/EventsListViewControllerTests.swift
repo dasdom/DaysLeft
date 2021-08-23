@@ -36,8 +36,8 @@ class EventsListViewControllerTests: XCTestCase {
   func test_numberOfRows_shouldCallEventStore() {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
-    let numberOfRows = 23
-    eventStoreMock.numberOfEventsReturnValue = numberOfRows
+    let events = ["Foo", "Bar"].map({ Event(name: $0, date: Date()) })
+    eventStoreMock.eventsPublisher.send(events)
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -45,13 +45,13 @@ class EventsListViewControllerTests: XCTestCase {
     let result = sut.tableView.dataSource?.tableView(sut.tableView, numberOfRowsInSection: 0)
 
     // assert
-    XCTAssertEqual(result, numberOfRows)
+    XCTAssertEqual(result, 2)
   }
 
   func test_cellForRow_shouldSetName() throws {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
-    eventStoreMock.eventAtReturnValue = Event(name: "Dummy", date: Date())
+    eventStoreMock.events = [Event(name: "Dummy", date: Date())]
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -67,7 +67,7 @@ class EventsListViewControllerTests: XCTestCase {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let notUsedDate = Date()
-    eventStoreMock.eventAtReturnValue = Event(name: "Dummy", date: notUsedDate)
+    eventStoreMock.events = [Event(name: "Dummy", date: notUsedDate)]
     eventStoreMock.remainingDaysReturnValue = 42
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
@@ -82,7 +82,7 @@ class EventsListViewControllerTests: XCTestCase {
 
   func test_addEvent_shouldTriggerReload() {
     // arrange
-    let eventStore = EventStore(eventsSerialiser: EventsPersistenceHandlerProtocolDummy())
+    let eventStore = EventStoreProtocolMock()
     sut.eventStore = eventStore
     sut.eventStore?.add(Event(name: "Dummy One", date: Date()))
     sut.loadViewIfNeeded()
