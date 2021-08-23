@@ -4,10 +4,10 @@
 
 import Foundation
 @testable import DaysLeft
+import Combine
 
 class EventStoreProtocolMock: EventStoreProtocol {
-
-  var eventsPublisher: Published<[Event]>.Publisher { $events }
+  var eventsPublisher = CurrentValueSubject<[Event], Never>([])
   @Published var events: [Event] = []
   var addEventReceivedValue: Event?
   var remainingDaysReturnValue: Int = 0

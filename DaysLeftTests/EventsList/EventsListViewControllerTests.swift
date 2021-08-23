@@ -79,4 +79,19 @@ class EventsListViewControllerTests: XCTestCase {
     // assert
     XCTAssertEqual(cell.remainingDaysLabel.text, "42")
   }
+
+  func test_addEvent_shouldTriggerReload() {
+    // arrange
+    let eventStore = EventStore(eventsSerialiser: EventsPersistenceHandlerProtocolDummy())
+    sut.eventStore = eventStore
+    sut.eventStore?.add(Event(name: "Dummy One", date: Date()))
+    sut.loadViewIfNeeded()
+    XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
+
+    // act
+    sut.eventStore?.add(Event(name: "Dummy Two", date: Date()))
+
+    // assert
+    XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 2)
+  }
 }

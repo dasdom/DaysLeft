@@ -6,7 +6,7 @@ import Foundation
 import Combine
 
 protocol EventStoreProtocol {
-  var eventsPublisher: Published<[Event]>.Publisher { get }
+  var eventsPublisher: CurrentValueSubject<[Event], Never> { get }
   func add(_ event: Event)
   func remainingDaysUntil(_ event: Event) -> Int
   func numberOfEvents() -> Int
@@ -15,8 +15,12 @@ protocol EventStoreProtocol {
 
 class EventStore: EventStoreProtocol {
 
-  var eventsPublisher: Published<[Event]>.Publisher { $events }
-  @Published private var events: [Event] = []
+  var eventsPublisher = CurrentValueSubject<[Event], Never>([])
+  private var events: [Event] = [] {
+    didSet {
+      eventsPublisher.send(events)
+    }
+  }
   private let eventsSerialiser: EventsPersistenceHandlerProtocol
 
   init(eventsSerialiser: EventsPersistenceHandlerProtocol = EventsPersistenceHandler()) {

@@ -3,11 +3,13 @@
 //
 
 import UIKit
+import Combine
 
 class EventsListViewController: UIViewController {
 
   @IBOutlet var tableView: UITableView!
   var eventStore: EventStoreProtocol?
+  var token: AnyCancellable?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -15,6 +17,11 @@ class EventsListViewController: UIViewController {
     tableView.dataSource = self
 
     tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
+
+    token = eventStore?.eventsPublisher
+      .sink(receiveValue: { [weak self] _ in
+        self?.tableView.reloadData()
+      })
   }
 }
 
