@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,10 @@
 		F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */; };
 		F2721CF726CEA4380020B48C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF626CEA4380020B48C /* EventCell.swift */; };
 		F2721CF926CEB4DE0020B48C /* EventCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF826CEB4DE0020B48C /* EventCellTests.swift */; };
+		F29E39A826D435E0001C8B40 /* EventInputViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39A726D435E0001C8B40 /* EventInputViewTests.swift */; };
+		F29E39AC26D4364A001C8B40 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = F29E39AB26D4364A001C8B40 /* ViewInspector */; };
+		F29E39AE26D4368C001C8B40 /* EventInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39AD26D4368C001C8B40 /* EventInputView.swift */; };
+		F29E39B126D548F1001C8B40 /* EventInputViewDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,9 @@
 		F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreProtocolMock.swift; sourceTree = "<group>"; };
 		F2721CF626CEA4380020B48C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		F2721CF826CEB4DE0020B48C /* EventCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellTests.swift; sourceTree = "<group>"; };
+		F29E39A726D435E0001C8B40 /* EventInputViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputViewTests.swift; sourceTree = "<group>"; };
+		F29E39AD26D4368C001C8B40 /* EventInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputView.swift; sourceTree = "<group>"; };
+		F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputViewDelegateMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29E39AC26D4364A001C8B40 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +111,7 @@
 				F2721CB526C9A6440020B48C /* SceneDelegate.swift */,
 				F2721CB726C9A6440020B48C /* ViewController.swift */,
 				F2721CF326CD9CAC0020B48C /* EventsList */,
+				F29E39AF26D43690001C8B40 /* EventInput */,
 				F2721CC926C9A6740020B48C /* Data */,
 				F2721CCE26C9A75D0020B48C /* Extensions */,
 				F2721CB926C9A6440020B48C /* Main.storyboard */,
@@ -135,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				F2721CF026CD9C400020B48C /* EventsList */,
+				F29E39A926D435E7001C8B40 /* EventInput */,
 				F2721CED26CD693D0020B48C /* Data */,
 				F2721CE326CAC1DE0020B48C /* Doubles */,
 				F2721CD726CA31E30020B48C /* Info.plist */,
@@ -147,6 +157,7 @@
 			children = (
 				F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */,
 				F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */,
+				F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -175,6 +186,22 @@
 				F2721CF626CEA4380020B48C /* EventCell.swift */,
 			);
 			path = EventsList;
+			sourceTree = "<group>";
+		};
+		F29E39A926D435E7001C8B40 /* EventInput */ = {
+			isa = PBXGroup;
+			children = (
+				F29E39A726D435E0001C8B40 /* EventInputViewTests.swift */,
+			);
+			path = EventInput;
+			sourceTree = "<group>";
+		};
+		F29E39AF26D43690001C8B40 /* EventInput */ = {
+			isa = PBXGroup;
+			children = (
+				F29E39AD26D4368C001C8B40 /* EventInputView.swift */,
+			);
+			path = EventInput;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +238,9 @@
 				F2721CD926CA31E30020B48C /* PBXTargetDependency */,
 			);
 			name = DaysLeftTests;
+			packageProductDependencies = (
+				F29E39AB26D4364A001C8B40 /* ViewInspector */,
+			);
 			productName = DaysLeftTests;
 			productReference = F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -223,6 +253,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
+				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
 					F2721CAF26C9A6440020B48C = {
 						CreatedOnToolsVersion = 12.5;
@@ -243,6 +274,9 @@
 				Base,
 			);
 			mainGroup = F2721CA726C9A6440020B48C;
+			packageReferences = (
+				F29E39AA26D4364A001C8B40 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = F2721CB126C9A6440020B48C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,6 +314,7 @@
 			files = (
 				F2721CCB26C9A6970020B48C /* EventStore.swift in Sources */,
 				F2721CF726CEA4380020B48C /* EventCell.swift in Sources */,
+				F29E39AE26D4368C001C8B40 /* EventInputView.swift in Sources */,
 				F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */,
 				F2721CE026CABE160020B48C /* EventsPersistenceHandler.swift in Sources */,
 				F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */,
@@ -294,9 +329,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29E39A826D435E0001C8B40 /* EventInputViewTests.swift in Sources */,
 				F2721CEF26CD9C3A0020B48C /* EventsListViewControllerTests.swift in Sources */,
 				F2721CF926CEB4DE0020B48C /* EventCellTests.swift in Sources */,
 				F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */,
+				F29E39B126D548F1001C8B40 /* EventInputViewDelegateMock.swift in Sources */,
 				F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */,
 				F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */,
 			);
@@ -560,6 +597,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F29E39AA26D4364A001C8B40 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F29E39AB26D4364A001C8B40 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F29E39AA26D4364A001C8B40 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2721CA826C9A6440020B48C /* Project object */;
 }
