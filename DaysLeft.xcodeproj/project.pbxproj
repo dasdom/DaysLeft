@@ -28,6 +28,11 @@
 		F29E39AC26D4364A001C8B40 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = F29E39AB26D4364A001C8B40 /* ViewInspector */; };
 		F29E39AE26D4368C001C8B40 /* EventInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39AD26D4368C001C8B40 /* EventInputView.swift */; };
 		F29E39B126D548F1001C8B40 /* EventInputViewDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */; };
+		F29E39B426D6A085001C8B40 /* ViewControllerModalRecorder in Frameworks */ = {isa = PBXBuildFile; productRef = F29E39B326D6A085001C8B40 /* ViewControllerModalRecorder */; };
+		F29E39B626D6A0FF001C8B40 /* EventsCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39B526D6A0FF001C8B40 /* EventsCoordinatorTests.swift */; };
+		F29E39B926D6A171001C8B40 /* EventsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */; };
+		F29E39BB26D6A193001C8B40 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39BA26D6A193001C8B40 /* Coordinator.swift */; };
+		F29E39BD26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,10 @@
 		F29E39A726D435E0001C8B40 /* EventInputViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputViewTests.swift; sourceTree = "<group>"; };
 		F29E39AD26D4368C001C8B40 /* EventInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputView.swift; sourceTree = "<group>"; };
 		F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInputViewDelegateMock.swift; sourceTree = "<group>"; };
+		F29E39B526D6A0FF001C8B40 /* EventsCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoordinatorTests.swift; sourceTree = "<group>"; };
+		F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoordinator.swift; sourceTree = "<group>"; };
+		F29E39BA26D6A193001C8B40 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewControllerDelegateMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F29E39AC26D4364A001C8B40 /* ViewInspector in Frameworks */,
+				F29E39B426D6A085001C8B40 /* ViewControllerModalRecorder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +120,8 @@
 				F2721CB326C9A6440020B48C /* AppDelegate.swift */,
 				F2721CB526C9A6440020B48C /* SceneDelegate.swift */,
 				F2721CB726C9A6440020B48C /* ViewController.swift */,
+				F29E39BA26D6A193001C8B40 /* Coordinator.swift */,
+				F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */,
 				F2721CF326CD9CAC0020B48C /* EventsList */,
 				F29E39AF26D43690001C8B40 /* EventInput */,
 				F2721CC926C9A6740020B48C /* Data */,
@@ -143,6 +155,7 @@
 		F2721CD426CA31E30020B48C /* DaysLeftTests */ = {
 			isa = PBXGroup;
 			children = (
+				F29E39B726D6A105001C8B40 /* Coordinator */,
 				F2721CF026CD9C400020B48C /* EventsList */,
 				F29E39A926D435E7001C8B40 /* EventInput */,
 				F2721CED26CD693D0020B48C /* Data */,
@@ -158,6 +171,7 @@
 				F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */,
 				F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */,
 				F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */,
+				F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -204,6 +218,14 @@
 			path = EventInput;
 			sourceTree = "<group>";
 		};
+		F29E39B726D6A105001C8B40 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F29E39B526D6A0FF001C8B40 /* EventsCoordinatorTests.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -240,6 +262,7 @@
 			name = DaysLeftTests;
 			packageProductDependencies = (
 				F29E39AB26D4364A001C8B40 /* ViewInspector */,
+				F29E39B326D6A085001C8B40 /* ViewControllerModalRecorder */,
 			);
 			productName = DaysLeftTests;
 			productReference = F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */;
@@ -276,6 +299,7 @@
 			mainGroup = F2721CA726C9A6440020B48C;
 			packageReferences = (
 				F29E39AA26D4364A001C8B40 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				F29E39B226D6A085001C8B40 /* XCRemoteSwiftPackageReference "ViewControllerModalRecorder" */,
 			);
 			productRefGroup = F2721CB126C9A6440020B48C /* Products */;
 			projectDirPath = "";
@@ -315,10 +339,12 @@
 				F2721CCB26C9A6970020B48C /* EventStore.swift in Sources */,
 				F2721CF726CEA4380020B48C /* EventCell.swift in Sources */,
 				F29E39AE26D4368C001C8B40 /* EventInputView.swift in Sources */,
+				F29E39B926D6A171001C8B40 /* EventsCoordinator.swift in Sources */,
 				F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */,
 				F2721CE026CABE160020B48C /* EventsPersistenceHandler.swift in Sources */,
 				F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */,
 				F2721CC826C9A65B0020B48C /* Event.swift in Sources */,
+				F29E39BB26D6A193001C8B40 /* Coordinator.swift in Sources */,
 				F2721CB826C9A6440020B48C /* ViewController.swift in Sources */,
 				F2721CB426C9A6440020B48C /* AppDelegate.swift in Sources */,
 				F2721CB626C9A6440020B48C /* SceneDelegate.swift in Sources */,
@@ -329,9 +355,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F29E39BD26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift in Sources */,
 				F29E39A826D435E0001C8B40 /* EventInputViewTests.swift in Sources */,
 				F2721CEF26CD9C3A0020B48C /* EventsListViewControllerTests.swift in Sources */,
 				F2721CF926CEB4DE0020B48C /* EventCellTests.swift in Sources */,
+				F29E39B626D6A0FF001C8B40 /* EventsCoordinatorTests.swift in Sources */,
 				F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */,
 				F29E39B126D548F1001C8B40 /* EventInputViewDelegateMock.swift in Sources */,
 				F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */,
@@ -607,6 +635,14 @@
 				minimumVersion = 0.8.1;
 			};
 		};
+		F29E39B226D6A085001C8B40 /* XCRemoteSwiftPackageReference "ViewControllerModalRecorder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dasdom/ViewControllerModalRecorder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -614,6 +650,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F29E39AA26D4364A001C8B40 /* XCRemoteSwiftPackageReference "ViewInspector" */;
 			productName = ViewInspector;
+		};
+		F29E39B326D6A085001C8B40 /* ViewControllerModalRecorder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F29E39B226D6A085001C8B40 /* XCRemoteSwiftPackageReference "ViewControllerModalRecorder" */;
+			productName = ViewControllerModalRecorder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

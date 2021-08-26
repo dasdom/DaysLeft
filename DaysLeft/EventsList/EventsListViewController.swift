@@ -9,10 +9,15 @@ enum Section: Hashable {
   case main
 }
 
+protocol EventsListViewControllerDelegate {
+  func addSelected(_ viewController: UIViewController)
+}
+
 class EventsListViewController: UIViewController {
 
   @IBOutlet var tableView: UITableView!
   private var dataSource: UITableViewDiffableDataSource<Section, UUID>?
+  var delegate: EventsListViewControllerDelegate?
   var eventStore: EventStoreProtocol?
   var token: AnyCancellable?
 
@@ -34,6 +39,9 @@ class EventsListViewController: UIViewController {
       .sink(receiveValue: { [weak self] events in
         self?.newSnapshot(events)
       })
+
+    let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent(_:)))
+    navigationItem.rightBarButtonItem = addButton
   }
 
   func newSnapshot(_ events: [Event]) {
@@ -41,5 +49,12 @@ class EventsListViewController: UIViewController {
     snapshot.appendSections([.main])
     snapshot.appendItems(events.map({ $0.id }))
     dataSource?.apply(snapshot)
+  }
+}
+
+// MARK: - Actions
+extension EventsListViewController {
+  @objc func addEvent(_ sender: UIBarButtonItem) {
+    delegate?.addSelected(self)
   }
 }

@@ -94,4 +94,20 @@ class EventsListViewControllerTests: XCTestCase {
     // assert
     XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 2)
   }
+
+  func test_rightNavigationItem_shouldCallAddSelectedOfDelegate() throws {
+    // arrange
+    sut.loadViewIfNeeded()
+    let delegateMock = EventsListViewControllerDelegateMock()
+    sut.delegate = delegateMock
+    let addButton = try XCTUnwrap(sut.navigationItem.rightBarButtonItem)
+    let target = try XCTUnwrap(addButton.target as? EventsListViewController)
+    let action = try XCTUnwrap(addButton.action)
+
+    // act
+    target.perform(action, with: addButton)
+
+    // assert
+    XCTAssertEqual(delegateMock.addSelectedCallCount, 1)
+  }
 }
