@@ -5,7 +5,7 @@
 import Foundation
 import Combine
 
-protocol EventStoreProtocol {
+protocol EventStoreProtocol: AnyObject {
   var eventsPublisher: CurrentValueSubject<[Event], Never> { get }
   func add(_ event: Event)
   func remainingDaysUntil(_ event: Event) -> Int

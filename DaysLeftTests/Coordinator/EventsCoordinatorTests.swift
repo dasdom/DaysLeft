@@ -3,21 +3,26 @@
 //
 
 import XCTest
+import ViewControllerModalRecorder
+import SwiftUI
 @testable import DaysLeft
 
 class EventsCoordinatorTests: XCTestCase {
 
   var sut: EventsCoordinator!
+  var eventStoreMock: EventStoreProtocolMock!
 
   override func setUpWithError() throws {
-    sut = EventsCoordinator()
+    eventStoreMock = EventStoreProtocolMock()
+    sut = EventsCoordinator(eventStore: eventStoreMock)
   }
 
   override func tearDownWithError() throws {
     sut = nil
+    eventStoreMock = nil
   }
 
-  func test_start_pushesEventsListOntoNavigationController() throws {
+  func test_start_shouldPushEventsListOntoNavigationController() throws {
     // act
     sut.start()
 
@@ -27,7 +32,45 @@ class EventsCoordinatorTests: XCTestCase {
     eventsList.loadViewIfNeeded()
     XCTAssertNotNil(eventsList.tableView) // test if view controller was loaded from storyboard
     XCTAssertIdentical(eventsList.delegate as? EventsCoordinator, sut)
-  }  
+    XCTAssertIdentical(eventsList.eventStore, sut.eventStore)
+  }
+
+  func test_addSelected_shouldPresentInputView() throws {
+    // arrange
+    let recorder = ViewControllerModalRecorder()
+    let viewController = UIViewController()
+
+    // act
+    sut.addSelected(viewController)
+
+    // assert
+    let modal = try XCTUnwrap(recorder.getLastPresented() as? UIHostingController<EventInputView>)
+    XCTAssertIdentical(modal.rootView.delegate as? EventsCoordinator, sut)
+  }
+
+  func test_addEventWith_shouldCallEventStore() {
+    // arrange
+    let event = Event(name: "Foobar", date: Date())
+
+    // act
+    sut.addEventWith(name: event.name, date: event.date)
+
+    // assert
+    XCTAssertEqual(eventStoreMock.addEventReceivedValue?.name, event.name)
+    XCTAssertEqual(eventStoreMock.addEventReceivedValue?.date, event.date)
+  }
+
+  func test_addEventWith_shouldDismissViewController() {
+    // arrange
+    let recorder = ViewControllerModalRecorder()
+    let event = Event(name: "Foobar", date: Date())
+
+    // act
+    sut.addEventWith(name: event.name, date: event.date)
+
+    // assert
+    XCTAssertEqual(recorder.getLastDismissed(), sut.presenter)
+  }
 }
 
 func executeRunloop() {

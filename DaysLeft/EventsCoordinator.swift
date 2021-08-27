@@ -3,20 +3,24 @@
 //
 
 import UIKit
+import SwiftUI
 
 class EventsCoordinator: Coordinator {
 
   let presenter: UINavigationController
+  let eventStore: EventStoreProtocol
   var viewController: UIViewController?
 
-  init(presenter: UINavigationController = UINavigationController()) {
+  init(presenter: UINavigationController = UINavigationController(), eventStore: EventStoreProtocol = EventStore()) {
     self.presenter = presenter
+    self.eventStore = eventStore
   }
 
   func start() {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let eventsList = storyboard.instantiateViewController(withIdentifier: "EventsListViewController") as! EventsListViewController
     eventsList.delegate = self
+    eventsList.eventStore = eventStore
 
     presenter.pushViewController(eventsList, animated: true)
 
@@ -26,6 +30,15 @@ class EventsCoordinator: Coordinator {
 
 extension EventsCoordinator: EventsListViewControllerDelegate {
   func addSelected(_ viewController: UIViewController) {
-    
+    let next = UIHostingController(rootView: EventInputView())
+    presenter.present(next, animated: true)
+    next.rootView.delegate = self
+  }
+}
+
+extension EventsCoordinator: EventInputViewDelegate {
+  func addEventWith(name: String, date: Date) {
+    eventStore.add(Event(name: name, date: date))
+    presenter.dismiss(animated: true, completion: nil)
   }
 }
