@@ -10,11 +10,16 @@ class EventStoreTests: XCTestCase {
   var sut: EventStore!
 
   override func setUpWithError() throws {
-    sut = EventStore(eventsSerialiser: EventsPersistenceHandlerProtocolDummy())
+    sut = EventStore(fileName: "dummy.json")
   }
 
   override func tearDownWithError() throws {
     sut = nil
+
+    let url = FileManager.default
+      .documentsURL(name: "dummy.json")
+
+    try? FileManager.default.removeItem(at: url)
   }
 
   func test_add_shouldAddEventToEvents() {
@@ -65,7 +70,7 @@ class EventStoreTests: XCTestCase {
 
   func test_addingEvent_shouldPublishChange() {
     // arrange
-    let publisherExpectation = expectation(description: "Wait for publisher")
+    let publisherExpectation = expectation(description: "Wait for publisher in \(#file)")
     var receivedEvents: [Event] = []
     let token = sut.eventsPublisher
       .dropFirst()
@@ -77,6 +82,27 @@ class EventStoreTests: XCTestCase {
     // act
     let event = Event(name: "Dummy", date: Date())
     sut.add(event)
+
+    // assert
+    wait(for: [publisherExpectation], timeout: 1)
+    token.cancel()
+    XCTAssertEqual(receivedEvents, [event])
+  }
+
+  func test_init_shouldLoadPreviousEvents() {
+    var sut1: EventStore? = EventStore(fileName: "dummy.json")
+    let event = Event(name: "Dummy", date: Date())
+    sut1?.add(event)
+    sut1 = nil
+
+    let publisherExpectation = expectation(description: "Wait for publisher in \(#file)")
+    let sut2 = EventStore(fileName: "dummy.json")
+    var receivedEvents: [Event] = []
+    let token = sut2.eventsPublisher
+      .sink { events in
+        receivedEvents = events
+        publisherExpectation.fulfill()
+      }
 
     // assert
     wait(for: [publisherExpectation], timeout: 1)

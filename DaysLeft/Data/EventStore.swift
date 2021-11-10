@@ -15,27 +15,27 @@ protocol EventStoreProtocol: AnyObject {
 
 class EventStore: EventStoreProtocol {
 
+  let fileName: String
   var eventsPublisher = CurrentValueSubject<[Event], Never>([])
   private var events: [Event] = [] {
     didSet {
       eventsPublisher.send(events)
     }
   }
-  private let eventsSerialiser: EventsPersistenceHandlerProtocol
 
-  init(eventsSerialiser: EventsPersistenceHandlerProtocol = EventsPersistenceHandler()) {
-    self.eventsSerialiser = eventsSerialiser
-    events = eventsSerialiser.load()
+  init(fileName: String = "events.json") {
+    self.fileName = fileName
+    load()
   }
 
   func add(_ event: Event) {
     events.append(event)
-    eventsSerialiser.save(events)
+    save(events)
   }
 
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
-    eventsSerialiser.save(events)
+    save(events)
   }
 
   func eventAt(index: Int) -> Event? {
@@ -68,5 +68,24 @@ class EventStore: EventStoreProtocol {
     }
 
     return remainingDays
+  }
+
+  func save(_ events: [Event]) {
+    do {
+      let data = try JSONEncoder().encode(events)
+      try data.write(to: FileManager.default.documentsURL(name: fileName))
+    } catch {
+      print("\(#file) \(#line), #Error: \(error)")
+    }
+  }
+
+  func load() {
+    do {
+      let data = try Data(contentsOf: FileManager.default.documentsURL(name: fileName))
+      events = try JSONDecoder().decode([Event].self, from: data)
+    } catch {
+      print("\(#file) \(#line), #Error: \(error)")
+      return
+    }
   }
 }

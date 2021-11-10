@@ -4,15 +4,12 @@
 
 import Foundation
 
-protocol FileManagerProtocol {
-  func eventsURL() -> URL
-}
-
-extension FileManager: FileManagerProtocol {
-  func eventsURL() -> URL {
-    guard let documentsURL = urls(for: .documentDirectory, in: .userDomainMask).first else {
+extension FileManager {
+  func documentsURL(name: String) -> URL {
+    guard let documentsURL = urls(for: .documentDirectory,
+                                     in: .userDomainMask).first else {
       fatalError()
     }
-    return documentsURL.appendingPathComponent("events.json")
+    return documentsURL.appendingPathComponent(name)
   }
 }

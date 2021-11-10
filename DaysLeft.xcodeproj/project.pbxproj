@@ -17,8 +17,6 @@
 		F2721CCB26C9A6970020B48C /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CCA26C9A6970020B48C /* EventStore.swift */; };
 		F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CCC26C9A7580020B48C /* FileManagerExtension.swift */; };
 		F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CDD26CA332C0020B48C /* EventStoreTests.swift */; };
-		F2721CE026CABE160020B48C /* EventsPersistenceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CDF26CABE160020B48C /* EventsPersistenceHandler.swift */; };
-		F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */; };
 		F2721CEF26CD9C3A0020B48C /* EventsListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CEE26CD9C3A0020B48C /* EventsListViewControllerTests.swift */; };
 		F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF126CD9CA80020B48C /* EventsListViewController.swift */; };
 		F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */; };
@@ -60,8 +58,6 @@
 		F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaysLeftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2721CD726CA31E30020B48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2721CDD26CA332C0020B48C /* EventStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreTests.swift; sourceTree = "<group>"; };
-		F2721CDF26CABE160020B48C /* EventsPersistenceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPersistenceHandler.swift; sourceTree = "<group>"; };
-		F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPersistenceHandlerProtocolDummy.swift; sourceTree = "<group>"; };
 		F2721CEE26CD9C3A0020B48C /* EventsListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewControllerTests.swift; sourceTree = "<group>"; };
 		F2721CF126CD9CA80020B48C /* EventsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewController.swift; sourceTree = "<group>"; };
 		F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreProtocolMock.swift; sourceTree = "<group>"; };
@@ -139,7 +135,6 @@
 			children = (
 				F2721CC726C9A65B0020B48C /* Event.swift */,
 				F2721CCA26C9A6970020B48C /* EventStore.swift */,
-				F2721CDF26CABE160020B48C /* EventsPersistenceHandler.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -168,7 +163,6 @@
 		F2721CE326CAC1DE0020B48C /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				F2721CE126CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift */,
 				F2721CF426CEA01F0020B48C /* EventStoreProtocolMock.swift */,
 				F29E39B026D548F1001C8B40 /* EventInputViewDelegateMock.swift */,
 				F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */,
@@ -341,7 +335,6 @@
 				F29E39AE26D4368C001C8B40 /* EventInputView.swift in Sources */,
 				F29E39B926D6A171001C8B40 /* EventsCoordinator.swift in Sources */,
 				F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */,
-				F2721CE026CABE160020B48C /* EventsPersistenceHandler.swift in Sources */,
 				F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */,
 				F2721CC826C9A65B0020B48C /* Event.swift in Sources */,
 				F29E39BB26D6A193001C8B40 /* Coordinator.swift in Sources */,
@@ -363,7 +356,6 @@
 				F2721CDE26CA332C0020B48C /* EventStoreTests.swift in Sources */,
 				F29E39B126D548F1001C8B40 /* EventInputViewDelegateMock.swift in Sources */,
 				F2721CF526CEA01F0020B48C /* EventStoreProtocolMock.swift in Sources */,
-				F2721CE226CAC1D90020B48C /* EventsPersistenceHandlerProtocolDummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
