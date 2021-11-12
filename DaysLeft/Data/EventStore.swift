@@ -29,6 +29,9 @@ class EventStore: EventStoreProtocol {
   }
 
   func add(_ event: Event) {
+    if let index = events.firstIndex(where: { $0.name == event.name && $0.date == event.date }) {
+      events.remove(at: index)
+    }
     events.append(event)
     save(events)
   }

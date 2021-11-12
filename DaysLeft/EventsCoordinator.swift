@@ -4,6 +4,7 @@
 
 import UIKit
 import SwiftUI
+import Contacts
 
 class EventsCoordinator: Coordinator {
 
@@ -37,11 +38,29 @@ extension EventsCoordinator: EventsListViewControllerDelegate {
 
 extension EventsCoordinator: EventInputViewDelegate {
   func importFromContacts() {
-    
+    let contactStore = CNContactStore()
+    contactStore.requestAccess(for: .contacts) { [weak self] granted, error in
+      guard granted else {
+        return
+      }
+      let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactBirthdayKey, CNContactEmailAddressesKey] as [CNKeyDescriptor]
+      let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
+      do {
+        try contactStore.enumerateContacts(with: fetchRequest) { [weak self] contact, _ in
+          if let birthday = contact.birthday?.date {
+            let name = "\(contact.givenName) \(contact.familyName)"
+            self?.eventStore.add(Event(name: name, date: birthday))
+          }
+        }
+        self?.presenter.dismiss(animated: true)
+      } catch {
+        print("error \(#file): \(error)")
+      }
+    }
   }
 
   func addEventWith(name: String, date: Date) {
     eventStore.add(Event(name: name, date: date))
-    presenter.dismiss(animated: true, completion: nil)
+    presenter.dismiss(animated: true)
   }
 }

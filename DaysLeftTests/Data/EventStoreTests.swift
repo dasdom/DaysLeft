@@ -33,6 +33,18 @@ class EventStoreTests: XCTestCase {
     XCTAssertEqual(sut.eventAt(index: 0), event)
   }
 
+  func test_add_whenEventIsAlreadyAdded_shouldNotAddEventAgain() {
+    let name = "Dummy"
+    let date = Date()
+    let event1 = Event(name: name, date: date)
+    sut.add(event1)
+
+    let event2 = Event(name: name, date: date)
+    sut.add(event2)
+
+    XCTAssertEqual(sut.eventAt(index: 0), event2)
+  }
+
   func test_remove_shouldRemoveEventFromEvents() {
     // arrange
     let event = Event(name: "Dummy", date: Date())
