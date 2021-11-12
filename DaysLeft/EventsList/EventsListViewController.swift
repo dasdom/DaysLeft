@@ -39,6 +39,10 @@ class EventsListViewController: UIViewController {
     dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: contentView.tableView, cellProvider: { tableView, indexPath, uuid in
       let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
       if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
+        if let data = event.thumbnailData {
+          let image = UIImage(data: data)
+          cell.thumbnailImageView.image = image
+        }
         cell.nameLabel.text = event.name
         cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
       }

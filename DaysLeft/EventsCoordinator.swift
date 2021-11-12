@@ -43,13 +43,13 @@ extension EventsCoordinator: EventInputViewDelegate {
       guard granted else {
         return
       }
-      let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactBirthdayKey, CNContactEmailAddressesKey] as [CNKeyDescriptor]
+      let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactBirthdayKey, CNContactEmailAddressesKey, CNContactThumbnailImageDataKey] as [CNKeyDescriptor]
       let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
       do {
         try contactStore.enumerateContacts(with: fetchRequest) { [weak self] contact, _ in
           if let birthday = contact.birthday?.date {
             let name = "\(contact.givenName) \(contact.familyName)"
-            self?.eventStore.add(Event(name: name, date: birthday))
+            self?.eventStore.add(Event(name: name, date: birthday, thumbnailData: contact.thumbnailImageData))
           }
         }
         self?.presenter.dismiss(animated: true)
