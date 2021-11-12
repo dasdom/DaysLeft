@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F23D034C273EA8A500F723D3 /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D034B273EA8A500F723D3 /* EventsListView.swift */; };
+		F23D034E273EABE800F723D3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D034D273EABE800F723D3 /* UIViewExtension.swift */; };
 		F2721CB426C9A6440020B48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CB326C9A6440020B48C /* AppDelegate.swift */; };
 		F2721CB626C9A6440020B48C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CB526C9A6440020B48C /* SceneDelegate.swift */; };
-		F2721CB826C9A6440020B48C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CB726C9A6440020B48C /* ViewController.swift */; };
-		F2721CBB26C9A6440020B48C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2721CB926C9A6440020B48C /* Main.storyboard */; };
 		F2721CBD26C9A6440020B48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2721CBC26C9A6440020B48C /* Assets.xcassets */; };
 		F2721CC026C9A6440020B48C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2721CBE26C9A6440020B48C /* LaunchScreen.storyboard */; };
 		F2721CC826C9A65B0020B48C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CC726C9A65B0020B48C /* Event.swift */; };
@@ -44,18 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F2721CB026C9A6440020B48C /* DaysLeft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaysLeft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F23D034B273EA8A500F723D3 /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
+		F23D034D273EABE800F723D3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		F2721CB026C9A6440020B48C /* fourtytwodays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fourtytwodays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2721CB326C9A6440020B48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2721CB526C9A6440020B48C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F2721CB726C9A6440020B48C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F2721CBA26C9A6440020B48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2721CBC26C9A6440020B48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2721CBF26C9A6440020B48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2721CC126C9A6440020B48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2721CC726C9A65B0020B48C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F2721CCA26C9A6970020B48C /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
 		F2721CCC26C9A7580020B48C /* FileManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
-		F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DaysLeftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2721CD326CA31E30020B48C /* fourtytwodaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fourtytwodaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2721CD726CA31E30020B48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2721CDD26CA332C0020B48C /* EventStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStoreTests.swift; sourceTree = "<group>"; };
 		F2721CEE26CD9C3A0020B48C /* EventsListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 		F2721CB126C9A6440020B48C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F2721CB026C9A6440020B48C /* DaysLeft.app */,
-				F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */,
+				F2721CB026C9A6440020B48C /* fourtytwodays.app */,
+				F2721CD326CA31E30020B48C /* fourtytwodaysTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,14 +115,12 @@
 			children = (
 				F2721CB326C9A6440020B48C /* AppDelegate.swift */,
 				F2721CB526C9A6440020B48C /* SceneDelegate.swift */,
-				F2721CB726C9A6440020B48C /* ViewController.swift */,
 				F29E39BA26D6A193001C8B40 /* Coordinator.swift */,
 				F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */,
 				F2721CF326CD9CAC0020B48C /* EventsList */,
 				F29E39AF26D43690001C8B40 /* EventInput */,
 				F2721CC926C9A6740020B48C /* Data */,
 				F2721CCE26C9A75D0020B48C /* Extensions */,
-				F2721CB926C9A6440020B48C /* Main.storyboard */,
 				F2721CBC26C9A6440020B48C /* Assets.xcassets */,
 				F2721CBE26C9A6440020B48C /* LaunchScreen.storyboard */,
 				F2721CC126C9A6440020B48C /* Info.plist */,
@@ -143,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				F2721CCC26C9A7580020B48C /* FileManagerExtension.swift */,
+				F23D034D273EABE800F723D3 /* UIViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -191,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				F2721CF126CD9CA80020B48C /* EventsListViewController.swift */,
+				F23D034B273EA8A500F723D3 /* EventsListView.swift */,
 				F2721CF626CEA4380020B48C /* EventCell.swift */,
 			);
 			path = EventsList;
@@ -223,9 +223,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F2721CAF26C9A6440020B48C /* DaysLeft */ = {
+		F2721CAF26C9A6440020B48C /* fourtytwodays */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2721CC426C9A6440020B48C /* Build configuration list for PBXNativeTarget "DaysLeft" */;
+			buildConfigurationList = F2721CC426C9A6440020B48C /* Build configuration list for PBXNativeTarget "fourtytwodays" */;
 			buildPhases = (
 				F2721CAC26C9A6440020B48C /* Sources */,
 				F2721CAD26C9A6440020B48C /* Frameworks */,
@@ -235,14 +235,14 @@
 			);
 			dependencies = (
 			);
-			name = DaysLeft;
+			name = fourtytwodays;
 			productName = DaysLeft;
-			productReference = F2721CB026C9A6440020B48C /* DaysLeft.app */;
+			productReference = F2721CB026C9A6440020B48C /* fourtytwodays.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F2721CD226CA31E30020B48C /* DaysLeftTests */ = {
+		F2721CD226CA31E30020B48C /* fourtytwodaysTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F2721CDA26CA31E30020B48C /* Build configuration list for PBXNativeTarget "DaysLeftTests" */;
+			buildConfigurationList = F2721CDA26CA31E30020B48C /* Build configuration list for PBXNativeTarget "fourtytwodaysTests" */;
 			buildPhases = (
 				F2721CCF26CA31E30020B48C /* Sources */,
 				F2721CD026CA31E30020B48C /* Frameworks */,
@@ -253,13 +253,13 @@
 			dependencies = (
 				F2721CD926CA31E30020B48C /* PBXTargetDependency */,
 			);
-			name = DaysLeftTests;
+			name = fourtytwodaysTests;
 			packageProductDependencies = (
 				F29E39AB26D4364A001C8B40 /* ViewInspector */,
 				F29E39B326D6A085001C8B40 /* ViewControllerModalRecorder */,
 			);
 			productName = DaysLeftTests;
-			productReference = F2721CD326CA31E30020B48C /* DaysLeftTests.xctest */;
+			productReference = F2721CD326CA31E30020B48C /* fourtytwodaysTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -282,7 +282,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F2721CAB26C9A6440020B48C /* Build configuration list for PBXProject "DaysLeft" */;
+			buildConfigurationList = F2721CAB26C9A6440020B48C /* Build configuration list for PBXProject "fourtytwodays" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -299,8 +299,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F2721CAF26C9A6440020B48C /* DaysLeft */,
-				F2721CD226CA31E30020B48C /* DaysLeftTests */,
+				F2721CAF26C9A6440020B48C /* fourtytwodays */,
+				F2721CD226CA31E30020B48C /* fourtytwodaysTests */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +312,6 @@
 			files = (
 				F2721CC026C9A6440020B48C /* LaunchScreen.storyboard in Resources */,
 				F2721CBD26C9A6440020B48C /* Assets.xcassets in Resources */,
-				F2721CBB26C9A6440020B48C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,9 +335,10 @@
 				F29E39B926D6A171001C8B40 /* EventsCoordinator.swift in Sources */,
 				F2721CF226CD9CA80020B48C /* EventsListViewController.swift in Sources */,
 				F2721CCD26C9A7580020B48C /* FileManagerExtension.swift in Sources */,
+				F23D034E273EABE800F723D3 /* UIViewExtension.swift in Sources */,
 				F2721CC826C9A65B0020B48C /* Event.swift in Sources */,
+				F23D034C273EA8A500F723D3 /* EventsListView.swift in Sources */,
 				F29E39BB26D6A193001C8B40 /* Coordinator.swift in Sources */,
-				F2721CB826C9A6440020B48C /* ViewController.swift in Sources */,
 				F2721CB426C9A6440020B48C /* AppDelegate.swift in Sources */,
 				F2721CB626C9A6440020B48C /* SceneDelegate.swift in Sources */,
 			);
@@ -364,20 +364,12 @@
 /* Begin PBXTargetDependency section */
 		F2721CD926CA31E30020B48C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F2721CAF26C9A6440020B48C /* DaysLeft */;
+			target = F2721CAF26C9A6440020B48C /* fourtytwodays */;
 			targetProxy = F2721CD826CA31E30020B48C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F2721CB926C9A6440020B48C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2721CBA26C9A6440020B48C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F2721CBE26C9A6440020B48C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -517,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DaysLeft;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.fourtytwodays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -536,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.DaysLeft;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.fourtytwodays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -561,7 +553,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DaysLeft.app/DaysLeft";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fourtytwodays.app/fourtytwodays";
 			};
 			name = Debug;
 		};
@@ -582,14 +574,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DaysLeft.app/DaysLeft";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fourtytwodays.app/fourtytwodays";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F2721CAB26C9A6440020B48C /* Build configuration list for PBXProject "DaysLeft" */ = {
+		F2721CAB26C9A6440020B48C /* Build configuration list for PBXProject "fourtytwodays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2721CC226C9A6440020B48C /* Debug */,
@@ -598,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2721CC426C9A6440020B48C /* Build configuration list for PBXNativeTarget "DaysLeft" */ = {
+		F2721CC426C9A6440020B48C /* Build configuration list for PBXNativeTarget "fourtytwodays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2721CC526C9A6440020B48C /* Debug */,
@@ -607,7 +599,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F2721CDA26CA31E30020B48C /* Build configuration list for PBXNativeTarget "DaysLeftTests" */ = {
+		F2721CDA26CA31E30020B48C /* Build configuration list for PBXNativeTarget "fourtytwodaysTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F2721CDB26CA31E30020B48C /* Debug */,

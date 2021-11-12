@@ -3,15 +3,39 @@
 //
 
 import Foundation
-@testable import DaysLeft
+@testable import fourtytwodays
 
-class EventInputViewDelegateMock: EventInputViewDelegate {
+// MARK: - EventInputViewDelegateMock -
 
-  var nameInput: String?
-  var dateInput: Date?
+final class EventInputViewDelegateMock: EventInputViewDelegate {
+
+  // MARK: - addEventWith
+
+  var addEventWithNameDateCallsCount = 0
+  var addEventWithNameDateCalled: Bool {
+    addEventWithNameDateCallsCount > 0
+  }
+  var addEventWithNameDateReceivedArguments: (name: String, date: Date)?
+  var addEventWithNameDateReceivedInvocations: [(name: String, date: Date)] = []
+  var addEventWithNameDateClosure: ((String, Date) -> Void)?
 
   func addEventWith(name: String, date: Date) {
-    nameInput = name
-    dateInput = date
+    addEventWithNameDateCallsCount += 1
+    addEventWithNameDateReceivedArguments = (name: name, date: date)
+    addEventWithNameDateReceivedInvocations.append((name: name, date: date))
+    addEventWithNameDateClosure?(name, date)
+  }
+
+  // MARK: - importFromContacts
+
+  var importFromContactsCallsCount = 0
+  var importFromContactsCalled: Bool {
+    importFromContactsCallsCount > 0
+  }
+  var importFromContactsClosure: (() -> Void)?
+
+  func importFromContacts() {
+    importFromContactsCallsCount += 1
+    importFromContactsClosure?()
   }
 }

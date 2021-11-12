@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import DaysLeft
+@testable import fourtytwodays
 
 class EventCellTests: XCTestCase {
 

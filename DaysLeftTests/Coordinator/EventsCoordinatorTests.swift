@@ -5,7 +5,7 @@
 import XCTest
 import ViewControllerModalRecorder
 import SwiftUI
-@testable import DaysLeft
+@testable import fourtytwodays
 
 class EventsCoordinatorTests: XCTestCase {
 

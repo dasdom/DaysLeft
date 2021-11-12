@@ -3,7 +3,7 @@
 //
 
 import UIKit
-@testable import DaysLeft
+@testable import fourtytwodays
 
 class EventsListViewControllerDelegateMock: EventsListViewControllerDelegate {
 

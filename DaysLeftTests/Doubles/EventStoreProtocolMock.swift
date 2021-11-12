@@ -3,7 +3,7 @@
 //
 
 import Foundation
-@testable import DaysLeft
+@testable import fourtytwodays
 import Combine
 
 class EventStoreProtocolMock: EventStoreProtocol {

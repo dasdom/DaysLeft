@@ -3,23 +3,18 @@
 //
 
 import XCTest
-@testable import DaysLeft
+@testable import fourtytwodays
 
 class EventsListViewControllerTests: XCTestCase {
 
   var sut: EventsListViewController!
 
   override func setUpWithError() throws {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    sut = (storyboard.instantiateViewController(withIdentifier: "EventsListViewController") as! EventsListViewController)
+    sut = EventsListViewController()
   }
 
   override func tearDownWithError() throws {
     sut = nil
-  }
-
-  func test_shouldBeLoadedFromStoryboard() {
-    XCTAssertNotNil(sut)
   }
 
   func test_loading_shouldAddTableView() {
@@ -27,7 +22,7 @@ class EventsListViewControllerTests: XCTestCase {
     sut.loadViewIfNeeded()
 
     // act
-    let tableViewIsSubview = sut.tableView?.isDescendant(of: sut.view)
+    let tableViewIsSubview = sut.tableView.isDescendant(of: sut.view)
 
     // assert
     XCTAssertEqual(tableViewIsSubview, true, "tableView should be subview")

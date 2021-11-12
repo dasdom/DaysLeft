@@ -17,8 +17,7 @@ class EventsCoordinator: Coordinator {
   }
 
   func start() {
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let eventsList = storyboard.instantiateViewController(withIdentifier: "EventsListViewController") as! EventsListViewController
+    let eventsList = EventsListViewController()
     eventsList.delegate = self
     eventsList.eventStore = eventStore
 
@@ -37,6 +36,10 @@ extension EventsCoordinator: EventsListViewControllerDelegate {
 }
 
 extension EventsCoordinator: EventInputViewDelegate {
+  func importFromContacts() {
+    
+  }
+
   func addEventWith(name: String, date: Date) {
     eventStore.add(Event(name: name, date: date))
     presenter.dismiss(animated: true, completion: nil)

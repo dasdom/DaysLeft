@@ -15,18 +15,28 @@ protocol EventsListViewControllerDelegate {
 
 class EventsListViewController: UIViewController {
 
-  @IBOutlet var tableView: UITableView!
   private var dataSource: UITableViewDiffableDataSource<Section, UUID>?
   var delegate: EventsListViewControllerDelegate?
   var eventStore: EventStoreProtocol?
   var token: AnyCancellable?
+  var tableView: UITableView {
+    return contentView.tableView
+  }
+  var contentView: EventsListView {
+    return view as! EventsListView
+  }
+
+  override func loadView() {
+    let contentView = EventsListView()
+    contentView.tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
+    view = contentView
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-   tableView.register(EventCell.self, forCellReuseIdentifier: "EventCell")
 
-    dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: tableView, cellProvider: { tableView, indexPath, uuid in
+    dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: contentView.tableView, cellProvider: { tableView, indexPath, uuid in
       let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
       if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
         cell.nameLabel.text = event.name

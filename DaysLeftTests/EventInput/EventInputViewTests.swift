@@ -3,7 +3,7 @@
 //
 
 import XCTest
-@testable import DaysLeft
+@testable import fourtytwodays
 import ViewInspector
 
 extension EventInputView: Inspectable {}
@@ -54,12 +54,24 @@ class EventInputViewTests: XCTestCase {
       try view.find(ViewType.TextField.self).setInput("Foobar")
       try view.find(ViewType.DatePicker.self).select(date: expectedDate)
 
-      try view.find(ViewType.Button.self).tap()
+      try view.find(ViewType.Button.self, where: { button in try button.labelView().text().string() == "Save" }).tap()
     }
     ViewHosting.host(view: sut)
     wait(for: [exp], timeout: 1)
 
-    XCTAssertEqual(delegateMock.nameInput, "Foobar")
-    XCTAssertEqual(delegateMock.dateInput, expectedDate)
+    XCTAssertEqual(delegateMock.addEventWithNameDateReceivedArguments?.name, "Foobar")
+    XCTAssertEqual(delegateMock.addEventWithNameDateReceivedArguments?.date, expectedDate)
+  }
+
+  func test_tapImportButton_shouldCallDelegate() throws {
+    let delegateMock = EventInputViewDelegateMock()
+    sut.delegate = delegateMock
+    let exp = sut.on(\.didAppear) { view in
+      try view.find(ViewType.Button.self, where: { button in try button.labelView().text().string() == "Import" }).tap()
+    }
+    ViewHosting.host(view: sut)
+    wait(for: [exp], timeout: 1)
+
+    XCTAssertEqual(delegateMock.importFromContactsCallsCount, 1)
   }
 }

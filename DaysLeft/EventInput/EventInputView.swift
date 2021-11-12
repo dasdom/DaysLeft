@@ -1,11 +1,12 @@
 //  Created by Dominik Hauser on 23.08.21.
-//  
+//
 //
 
 import SwiftUI
 
 protocol EventInputViewDelegate {
   func addEventWith(name: String, date: Date)
+  func importFromContacts()
 }
 
 struct EventInputView: View {
@@ -22,6 +23,9 @@ struct EventInputView: View {
       Button("Save") {
         delegate?.addEventWith(name: name, date: date)
       }
+      Button("Import") {
+        delegate?.importFromContacts()
+      }
     }
     .onAppear { self.didAppear?(self) }
   }
@@ -32,3 +36,4 @@ struct EventInputView_Previews: PreviewProvider {
         EventInputView()
     }
 }
+

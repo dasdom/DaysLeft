@@ -15,8 +15,16 @@ class EventCell: UITableViewCell {
 
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-    contentView.addSubview(nameLabel)
-    contentView.addSubview(remainingDaysLabel)
+    let stackView = UIStackView(arrangedSubviews: [nameLabel, remainingDaysLabel]).forAutoLayout()
+
+    contentView.addSubview(stackView)
+
+    NSLayoutConstraint.activate([
+      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+    ])
   }
   
   required init?(coder: NSCoder) {

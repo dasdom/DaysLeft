@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F2721CAF26C9A6440020B48C"
-               BuildableName = "DaysLeft.app"
-               BlueprintName = "DaysLeft"
-               ReferencedContainer = "container:DaysLeft.xcodeproj">
+               BuildableName = "fourtytwodays.app"
+               BlueprintName = "fourtytwodays"
+               ReferencedContainer = "container:fourtytwodays.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2721CAF26C9A6440020B48C"
-            BuildableName = "DaysLeft.app"
-            BlueprintName = "DaysLeft"
-            ReferencedContainer = "container:DaysLeft.xcodeproj">
+            BuildableName = "fourtytwodays.app"
+            BlueprintName = "fourtytwodays"
+            ReferencedContainer = "container:fourtytwodays.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F2721CD226CA31E30020B48C"
-               BuildableName = "DaysLeftTests.xctest"
-               BlueprintName = "DaysLeftTests"
-               ReferencedContainer = "container:DaysLeft.xcodeproj">
+               BuildableName = "fourtytwodaysTests.xctest"
+               BlueprintName = "fourtytwodaysTests"
+               ReferencedContainer = "container:fourtytwodays.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2721CAF26C9A6440020B48C"
-            BuildableName = "DaysLeft.app"
-            BlueprintName = "DaysLeft"
-            ReferencedContainer = "container:DaysLeft.xcodeproj">
+            BuildableName = "fourtytwodays.app"
+            BlueprintName = "fourtytwodays"
+            ReferencedContainer = "container:fourtytwodays.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2721CAF26C9A6440020B48C"
-            BuildableName = "DaysLeft.app"
-            BlueprintName = "DaysLeft"
-            ReferencedContainer = "container:DaysLeft.xcodeproj">
+            BuildableName = "fourtytwodays.app"
+            BlueprintName = "fourtytwodays"
+            ReferencedContainer = "container:fourtytwodays.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
