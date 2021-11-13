@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		F23D034C273EA8A500F723D3 /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D034B273EA8A500F723D3 /* EventsListView.swift */; };
 		F23D034E273EABE800F723D3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D034D273EABE800F723D3 /* UIViewExtension.swift */; };
+		F23D0356273F025900F723D3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23D0355273F025900F723D3 /* WidgetKit.framework */; };
+		F23D0358273F025900F723D3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23D0357273F025900F723D3 /* SwiftUI.framework */; };
+		F23D035B273F025900F723D3 /* fourtytwodaysextension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D035A273F025900F723D3 /* fourtytwodaysextension.swift */; };
+		F23D035D273F025A00F723D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23D035C273F025A00F723D3 /* Assets.xcassets */; };
+		F23D0361273F025A00F723D3 /* fourtytwodaysextensionExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F23D0353273F025900F723D3 /* fourtytwodaysextensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F2721CB426C9A6440020B48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CB326C9A6440020B48C /* AppDelegate.swift */; };
 		F2721CB626C9A6440020B48C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CB526C9A6440020B48C /* SceneDelegate.swift */; };
 		F2721CBD26C9A6440020B48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2721CBC26C9A6440020B48C /* Assets.xcassets */; };
@@ -31,9 +36,21 @@
 		F29E39B926D6A171001C8B40 /* EventsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */; };
 		F29E39BB26D6A193001C8B40 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39BA26D6A193001C8B40 /* Coordinator.swift */; };
 		F29E39BD26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */; };
+		F2C078DC273F10FE00A92A24 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CCC26C9A7580020B48C /* FileManagerExtension.swift */; };
+		F2C078DE273F13B400A92A24 /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C078DD273F13B400A92A24 /* EventsListView.swift */; };
+		F2C078DF273F13E700A92A24 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CC726C9A65B0020B48C /* Event.swift */; };
+		F2C078E0273F13ED00A92A24 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2721CCA26C9A6970020B48C /* EventStore.swift */; };
+		F2C078E2273F144000A92A24 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C078E1273F144000A92A24 /* EventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F23D035F273F025A00F723D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2721CA826C9A6440020B48C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F23D0352273F025900F723D3;
+			remoteInfo = fourtytwodaysextensionExtension;
+		};
 		F2721CD826CA31E30020B48C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F2721CA826C9A6440020B48C /* Project object */;
@@ -43,9 +60,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F23D0365273F025A00F723D3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F23D0361273F025A00F723D3 /* fourtytwodaysextensionExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F23D034B273EA8A500F723D3 /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
 		F23D034D273EABE800F723D3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		F23D0353273F025900F723D3 /* fourtytwodaysextensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = fourtytwodaysextensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F23D0355273F025900F723D3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F23D0357273F025900F723D3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F23D035A273F025900F723D3 /* fourtytwodaysextension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fourtytwodaysextension.swift; sourceTree = "<group>"; };
+		F23D035C273F025A00F723D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F23D035E273F025A00F723D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F23D0366273F0FE000F723D3 /* fourtytwodaysextensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourtytwodaysextensionExtension.entitlements; sourceTree = "<group>"; };
+		F23D0367273F104600F723D3 /* fourtytwodays.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fourtytwodays.entitlements; sourceTree = "<group>"; };
 		F2721CB026C9A6440020B48C /* fourtytwodays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fourtytwodays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2721CB326C9A6440020B48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2721CB526C9A6440020B48C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,9 +109,20 @@
 		F29E39B826D6A171001C8B40 /* EventsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoordinator.swift; sourceTree = "<group>"; };
 		F29E39BA26D6A193001C8B40 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F29E39BC26D7ECCD001C8B40 /* EventsListViewControllerDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewControllerDelegateMock.swift; sourceTree = "<group>"; };
+		F2C078DD273F13B400A92A24 /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
+		F2C078E1273F144000A92A24 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F23D0350273F025900F723D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F23D0358273F025900F723D3 /* SwiftUI.framework in Frameworks */,
+				F23D0356273F025900F723D3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2721CAD26C9A6440020B48C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,11 +142,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F23D0354273F025900F723D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F23D0355273F025900F723D3 /* WidgetKit.framework */,
+				F23D0357273F025900F723D3 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F23D0359273F025900F723D3 /* fourtytwodaysextension */ = {
+			isa = PBXGroup;
+			children = (
+				F23D035A273F025900F723D3 /* fourtytwodaysextension.swift */,
+				F2C078DD273F13B400A92A24 /* EventsListView.swift */,
+				F2C078E1273F144000A92A24 /* EventView.swift */,
+				F23D035C273F025A00F723D3 /* Assets.xcassets */,
+				F23D035E273F025A00F723D3 /* Info.plist */,
+			);
+			path = fourtytwodaysextension;
+			sourceTree = "<group>";
+		};
 		F2721CA726C9A6440020B48C = {
 			isa = PBXGroup;
 			children = (
+				F23D0367273F104600F723D3 /* fourtytwodays.entitlements */,
+				F23D0366273F0FE000F723D3 /* fourtytwodaysextensionExtension.entitlements */,
 				F2721CB226C9A6440020B48C /* DaysLeft */,
 				F2721CD426CA31E30020B48C /* DaysLeftTests */,
+				F23D0359273F025900F723D3 /* fourtytwodaysextension */,
+				F23D0354273F025900F723D3 /* Frameworks */,
 				F2721CB126C9A6440020B48C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +181,7 @@
 			children = (
 				F2721CB026C9A6440020B48C /* fourtytwodays.app */,
 				F2721CD326CA31E30020B48C /* fourtytwodaysTests.xctest */,
+				F23D0353273F025900F723D3 /* fourtytwodaysextensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,6 +299,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F23D0352273F025900F723D3 /* fourtytwodaysextensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F23D0362273F025A00F723D3 /* Build configuration list for PBXNativeTarget "fourtytwodaysextensionExtension" */;
+			buildPhases = (
+				F23D034F273F025900F723D3 /* Sources */,
+				F23D0350273F025900F723D3 /* Frameworks */,
+				F23D0351273F025900F723D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fourtytwodaysextensionExtension;
+			productName = fourtytwodaysextensionExtension;
+			productReference = F23D0353273F025900F723D3 /* fourtytwodaysextensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F2721CAF26C9A6440020B48C /* fourtytwodays */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2721CC426C9A6440020B48C /* Build configuration list for PBXNativeTarget "fourtytwodays" */;
@@ -230,10 +323,12 @@
 				F2721CAC26C9A6440020B48C /* Sources */,
 				F2721CAD26C9A6440020B48C /* Frameworks */,
 				F2721CAE26C9A6440020B48C /* Resources */,
+				F23D0365273F025A00F723D3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F23D0360273F025A00F723D3 /* PBXTargetDependency */,
 			);
 			name = fourtytwodays;
 			productName = DaysLeft;
@@ -268,10 +363,13 @@
 		F2721CA826C9A6440020B48C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
+					F23D0352273F025900F723D3 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					F2721CAF26C9A6440020B48C = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -301,11 +399,20 @@
 			targets = (
 				F2721CAF26C9A6440020B48C /* fourtytwodays */,
 				F2721CD226CA31E30020B48C /* fourtytwodaysTests */,
+				F23D0352273F025900F723D3 /* fourtytwodaysextensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F23D0351273F025900F723D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F23D035D273F025A00F723D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2721CAE26C9A6440020B48C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +432,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F23D034F273F025900F723D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2C078E0273F13ED00A92A24 /* EventStore.swift in Sources */,
+				F2C078DF273F13E700A92A24 /* Event.swift in Sources */,
+				F23D035B273F025900F723D3 /* fourtytwodaysextension.swift in Sources */,
+				F2C078E2273F144000A92A24 /* EventView.swift in Sources */,
+				F2C078DE273F13B400A92A24 /* EventsListView.swift in Sources */,
+				F2C078DC273F10FE00A92A24 /* FileManagerExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2721CAC26C9A6440020B48C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +482,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F23D0360273F025A00F723D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F23D0352273F025900F723D3 /* fourtytwodaysextensionExtension */;
+			targetProxy = F23D035F273F025A00F723D3 /* PBXContainerItemProxy */;
+		};
 		F2721CD926CA31E30020B48C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F2721CAF26C9A6440020B48C /* fourtytwodays */;
@@ -381,6 +506,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F23D0363273F025A00F723D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = fourtytwodaysextensionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fourtytwodaysextension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = fourtytwodaysextension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 dasdom. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.fourtytwodays.fourtytwodaysextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F23D0364273F025A00F723D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = fourtytwodaysextensionExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = fourtytwodaysextension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = fourtytwodaysextension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2021 dasdom. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.fourtytwodays.fourtytwodaysextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F2721CC226C9A6440020B48C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,8 +685,10 @@
 		F2721CC526C9A6440020B48C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fourtytwodays.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = DaysLeft/Info.plist;
@@ -519,8 +706,10 @@
 		F2721CC626C9A6440020B48C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fourtytwodays.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = DaysLeft/Info.plist;
@@ -581,6 +770,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F23D0362273F025A00F723D3 /* Build configuration list for PBXNativeTarget "fourtytwodaysextensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F23D0363273F025A00F723D3 /* Debug */,
+				F23D0364273F025A00F723D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F2721CAB26C9A6440020B48C /* Build configuration list for PBXProject "fourtytwodays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

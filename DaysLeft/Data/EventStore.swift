@@ -17,7 +17,7 @@ class EventStore: EventStoreProtocol {
 
   let fileName: String
   var eventsPublisher = CurrentValueSubject<[Event], Never>([])
-  private var events: [Event] = [] {
+  private(set) var events: [Event] = [] {
     didSet {
       eventsPublisher.send(events)
     }
@@ -29,10 +29,16 @@ class EventStore: EventStoreProtocol {
   }
 
   func add(_ event: Event) {
-    if let index = events.firstIndex(where: { $0.name == event.name && $0.date == event.date }) {
-      events.remove(at: index)
+    var tempEvents = events
+    if let index = tempEvents.firstIndex(where: {
+      $0.name == event.name
+      && $0.lastName == $0.lastName
+      && $0.date == event.date
+    }) {
+      tempEvents.remove(at: index)
     }
-    events.append(event)
+    tempEvents.append(event)
+    events = tempEvents.sorted(by: { remainingDaysUntil($0) < remainingDaysUntil($1) })
     save(events)
   }
 

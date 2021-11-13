@@ -35,7 +35,6 @@ class EventsListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-
     dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: contentView.tableView, cellProvider: { tableView, indexPath, uuid in
       let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
       if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
@@ -43,7 +42,8 @@ class EventsListViewController: UIViewController {
           let image = UIImage(data: data)
           cell.thumbnailImageView.image = image
         }
-        cell.nameLabel.text = event.name
+        let name = [event.name, event.lastName].compactMap({ $0 }).joined(separator: " ")
+        cell.nameLabel.text = name
         cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
       }
       return cell

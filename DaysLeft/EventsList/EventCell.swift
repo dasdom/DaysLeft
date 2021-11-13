@@ -19,7 +19,7 @@ class EventCell: UITableViewCell {
 
     let stackView = UIStackView(arrangedSubviews: [thumbnailImageView, nameLabel, remainingDaysLabel]).forAutoLayout()
     stackView.spacing = 5
-    
+
     contentView.addSubview(stackView)
 
     let thumbnailHeightConstraint = thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor)

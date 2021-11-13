@@ -6,10 +6,9 @@ import Foundation
 
 extension FileManager {
   func documentsURL(name: String) -> URL {
-    guard let documentsURL = urls(for: .documentDirectory,
-                                     in: .userDomainMask).first else {
+    guard let sharedURL = containerURL(forSecurityApplicationGroupIdentifier: "group.de.dasdom.fourtytwodays") else {
       fatalError()
     }
-    return documentsURL.appendingPathComponent(name)
+    return sharedURL.appendingPathComponent(name)
   }
 }
