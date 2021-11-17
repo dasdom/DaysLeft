@@ -19,6 +19,12 @@ class EventsListViewController: UIViewController {
   var delegate: EventsListViewControllerDelegate?
   var eventStore: EventStoreProtocol?
   var token: AnyCancellable?
+  let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    formatter.timeStyle = .none
+    return formatter
+  }()
   var tableView: UITableView {
     return contentView.tableView
   }
@@ -35,15 +41,24 @@ class EventsListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: contentView.tableView, cellProvider: { tableView, indexPath, uuid in
+    dataSource = UITableViewDiffableDataSource<Section, UUID>(tableView: contentView.tableView, cellProvider: { [weak self] tableView, indexPath, uuid in
+
       let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
+
+      guard let self = self else {
+        return cell
+      }
+
       if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
         if let data = event.thumbnailData {
           let image = UIImage(data: data)
           cell.thumbnailImageView.image = image
+        } else {
+          cell.thumbnailImageView.image = nil
         }
         let name = [event.name, event.lastName].compactMap({ $0 }).joined(separator: " ")
         cell.nameLabel.text = name
+        cell.dateLabel.text = self.dateFormatter.string(from: event.date)
         cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
       }
       return cell
@@ -63,6 +78,12 @@ class EventsListViewController: UIViewController {
     snapshot.appendSections([.main])
     snapshot.appendItems(events.map({ $0.id }))
     dataSource?.apply(snapshot)
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    tableView.reloadData()
   }
 }
 

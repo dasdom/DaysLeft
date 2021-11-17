@@ -15,10 +15,16 @@ struct EventView: View {
         Image(uiImage: uiImage)
           .resizable()
           .frame(width: 20, height: 20)
+          .clipShape(Circle())
       }
       Text(event.name)
+        .font(.subheadline)
+        .bold()
       Spacer()
       Text("\(eventStore.remainingDaysUntil(event))")
+        .font(.subheadline)
+        .bold()
     }
   }
 }
+
