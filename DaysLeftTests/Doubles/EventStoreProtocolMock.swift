@@ -7,6 +7,18 @@ import Foundation
 import Combine
 
 class EventStoreProtocolMock: EventStoreProtocol {
+
+  var nextDate: Date?
+  var age = 0
+
+  func nextOccurrence(of date: Date) -> Date? {
+    return nextDate
+  }
+
+  func age(of event: Event) -> Int {
+    return age
+  }
+
   var eventsPublisher = CurrentValueSubject<[Event], Never>([])
   var events: [Event] = [] {
     didSet {

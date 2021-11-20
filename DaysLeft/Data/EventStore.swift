@@ -9,6 +9,8 @@ protocol EventStoreProtocol: AnyObject {
   var eventsPublisher: CurrentValueSubject<[Event], Never> { get }
   func add(_ event: Event)
   func remainingDaysUntil(_ event: Event) -> Int
+  func nextOccurrence(of date: Date) -> Date?
+  func age(of event: Event) -> Int
   func numberOfEvents() -> Int
   func eventAt(index: Int) -> Event?
 }
@@ -60,15 +62,15 @@ class EventStore: EventStoreProtocol {
 
   func remainingDaysUntil(_ event: Event) -> Int {
     let calendar = Calendar.current
-    let eventDateComponents = calendar.dateComponents([.day, .month], from: event.date)
+//    let eventDateComponents = calendar.dateComponents([.day, .month], from: event.date)
     let now = Date()
-    let nowComponents = calendar.dateComponents([.day, .month], from: now)
-    if eventDateComponents == nowComponents {
-      return 0
-    }
+//    let nowComponents = calendar.dateComponents([.day, .month], from: now)
+//    if eventDateComponents == nowComponents {
+//      return 0
+//    }
 
     let startOfToday = calendar.startOfDay(for: now)
-    guard let next = calendar.nextDate(after: startOfToday, matching: eventDateComponents, matchingPolicy: .nextTime) else {
+    guard let next = nextOccurrence(of: event.date) else {
       return 0
     }
 
@@ -77,6 +79,32 @@ class EventStore: EventStoreProtocol {
     }
 
     return remainingDays
+  }
+
+  func nextOccurrence(of date: Date) -> Date? {
+    let calendar = Calendar.current
+    let eventDateComponents = calendar.dateComponents([.day, .month], from: date)
+    let now = Date()
+    let nowComponents = calendar.dateComponents([.day, .month], from: now)
+    if eventDateComponents == nowComponents {
+      return nil
+    }
+
+    let startOfToday = calendar.startOfDay(for: now)
+    guard let next = calendar.nextDate(after: startOfToday, matching: eventDateComponents, matchingPolicy: .nextTime) else {
+      return nil
+    }
+    return next
+  }
+
+  func age(of event: Event) -> Int {
+    let calendar = Calendar.current
+
+    let startOfToday = calendar.startOfDay(for: Date())
+    guard let age = calendar.dateComponents([.year], from: event.date, to: startOfToday).year else {
+      return 0
+    }
+    return age + 1
   }
 
   func save(_ events: [Event]) {

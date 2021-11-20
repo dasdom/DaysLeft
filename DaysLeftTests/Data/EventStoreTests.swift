@@ -80,6 +80,14 @@ class EventStoreTests: XCTestCase {
     XCTAssertEqual(result, 42)
   }
 
+  func test_age_whenDateIsThreeYearsInThePastAndTwoDaysInFuture_shouldBeThree() {
+    let event = event(name: "Dummy", yearsInPast: 3, daysInFuture: 2)
+
+    let result = sut.age(of: event)
+
+    XCTAssertEqual(result, 3)
+  }
+
   func test_addingEvent_shouldPublishChange() {
     // arrange
     let publisherExpectation = expectation(description: "Wait for publisher in \(#file)")

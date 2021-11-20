@@ -79,8 +79,11 @@ class EventsListViewControllerTests: XCTestCase {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let date = dateFormatter.date(from: "2020-11-13")!
+    dateFormatter.setLocalizedDateFormatFromTemplate("dd MM")
+    let date = date(daysInFuture: 2)
+    let next = try next(for: date)
+    eventStoreMock.nextDate = next
+    eventStoreMock.age = 3
     eventStoreMock.events = [Event(name: "Dummy", date: date)]
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
@@ -90,7 +93,7 @@ class EventsListViewControllerTests: XCTestCase {
     let cell = try XCTUnwrap(sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as? EventCell)
 
     // assert
-    XCTAssertEqual(cell.dateLabel.text, "11/13/20")
+    XCTAssertEqual(cell.dateLabel.text, "turns 3 on \(dateFormatter.string(from: next))")
   }
 
   func test_addEvent_shouldTriggerReload() {
@@ -122,5 +125,20 @@ class EventsListViewControllerTests: XCTestCase {
 
     // assert
     XCTAssertEqual(delegateMock.addSelectedCallCount, 1)
+  }
+}
+
+extension EventsListViewControllerTests {
+  func next(for date: Date) throws -> Date {
+    let calendar = Calendar.current
+    let startOfToday = calendar.startOfDay(for: Date())
+    let eventDateComponents = calendar.dateComponents([.day, .month], from: date)
+    return try XCTUnwrap(calendar.nextDate(after: startOfToday, matching: eventDateComponents, matchingPolicy: .nextTime))
+  }
+
+  func date(yearsInPast: Int = 0, daysInFuture: Int = 0) -> Date {
+    let calendar = Calendar(identifier: .gregorian)
+    let dateYearsInPast = calendar.date(byAdding: .year, value: -yearsInPast, to: Date())!
+    return calendar.date(byAdding: .day, value: daysInFuture, to: dateYearsInPast)!
   }
 }

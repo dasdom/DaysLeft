@@ -27,6 +27,7 @@ struct EventInputView: View {
         delegate?.importFromContacts()
       }
     }
+    .padding()
     .onAppear { self.didAppear?(self) }
   }
 }

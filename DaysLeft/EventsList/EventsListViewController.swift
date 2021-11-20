@@ -21,8 +21,7 @@ class EventsListViewController: UIViewController {
   var token: AnyCancellable?
   let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .none
+    formatter.setLocalizedDateFormatFromTemplate("dd MM")
     return formatter
   }()
   var tableView: UITableView {
@@ -50,16 +49,7 @@ class EventsListViewController: UIViewController {
       }
 
       if let eventStore = self.eventStore, let event = eventStore.eventAt(index: indexPath.row) {
-        if let data = event.thumbnailData {
-          let image = UIImage(data: data)
-          cell.thumbnailImageView.image = image
-        } else {
-          cell.thumbnailImageView.image = nil
-        }
-        let name = [event.name, event.lastName].compactMap({ $0 }).joined(separator: " ")
-        cell.nameLabel.text = name
-        cell.dateLabel.text = self.dateFormatter.string(from: event.date)
-        cell.remainingDaysLabel.text = "\(eventStore.remainingDaysUntil(event))"
+        cell.update(with: event, eventStore: eventStore, dateFormatter: self.dateFormatter)
       }
       return cell
     })
@@ -71,6 +61,8 @@ class EventsListViewController: UIViewController {
 
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent(_:)))
     navigationItem.rightBarButtonItem = addButton
+
+    title = "Events"
   }
 
   func newSnapshot(_ events: [Event]) {
