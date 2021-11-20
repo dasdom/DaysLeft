@@ -5,6 +5,7 @@
 import XCTest
 import ViewControllerModalRecorder
 import SwiftUI
+import Combine
 @testable import fourtytwodays
 
 class EventsCoordinatorTests: XCTestCase {
@@ -14,6 +15,7 @@ class EventsCoordinatorTests: XCTestCase {
 
   override func setUpWithError() throws {
     eventStoreMock = EventStoreProtocolMock()
+    eventStoreMock.eventsPublisher = CurrentValueSubject<[Event], Never>([])
     sut = EventsCoordinator(eventStore: eventStoreMock)
   }
 
@@ -30,6 +32,7 @@ class EventsCoordinatorTests: XCTestCase {
     executeRunloop()
     let eventsList = try XCTUnwrap(sut.presenter.topViewController as? EventsListViewController)
     eventsList.loadViewIfNeeded()
+
     XCTAssertNotNil(eventsList.tableView) // test if view controller was loaded from storyboard
     XCTAssertIdentical(eventsList.delegate as? EventsCoordinator, sut)
     XCTAssertIdentical(eventsList.eventStore, sut.eventStore)
@@ -56,8 +59,8 @@ class EventsCoordinatorTests: XCTestCase {
     sut.addEventWith(name: event.name, date: event.date)
 
     // assert
-    XCTAssertEqual(eventStoreMock.addEventReceivedValue?.name, event.name)
-    XCTAssertEqual(eventStoreMock.addEventReceivedValue?.date, event.date)
+    XCTAssertEqual(eventStoreMock.addReceivedEvent?.name, event.name)
+    XCTAssertEqual(eventStoreMock.addReceivedEvent?.date, event.date)
   }
 
   func test_addEventWith_shouldDismissViewController() {

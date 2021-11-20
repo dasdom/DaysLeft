@@ -3,6 +3,7 @@
 //
 
 import XCTest
+import Combine
 @testable import fourtytwodays
 
 class EventsListViewControllerTests: XCTestCase {
@@ -28,11 +29,15 @@ class EventsListViewControllerTests: XCTestCase {
     XCTAssertEqual(tableViewIsSubview, true, "tableView should be subview")
   }
 
+  
+
   func test_numberOfRows_shouldCallEventStore() {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let events = ["Foo", "Bar"].map({ Event(name: $0, date: Date()) })
-    eventStoreMock.eventsPublisher.send(events)
+    let eventsPublisher = CurrentValueSubject<[Event], Never>([])
+    eventStoreMock.eventsPublisher = eventsPublisher
+    eventsPublisher.send(events)
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -46,7 +51,10 @@ class EventsListViewControllerTests: XCTestCase {
   func test_cellForRow_shouldSetName() throws {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
-    eventStoreMock.events = [Event(name: "Dummy", date: Date())]
+    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: Date())
+    let eventsPublisher = CurrentValueSubject<[Event], Never>([])
+    eventStoreMock.eventsPublisher = eventsPublisher
+    eventsPublisher.send([Event(name: "Dummy", date: Date())])
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -62,8 +70,11 @@ class EventsListViewControllerTests: XCTestCase {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let notUsedDate = Date()
-    eventStoreMock.events = [Event(name: "Dummy", date: notUsedDate)]
-    eventStoreMock.remainingDaysReturnValue = 42
+    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: notUsedDate)
+    eventStoreMock.remainingDaysUntilReturnValue = 42
+    let eventsPublisher = CurrentValueSubject<[Event], Never>([])
+    eventStoreMock.eventsPublisher = eventsPublisher
+    eventsPublisher.send([Event(name: "Dummy", date: notUsedDate)])
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -80,11 +91,13 @@ class EventsListViewControllerTests: XCTestCase {
     let eventStoreMock = EventStoreProtocolMock()
     let dateFormatter = DateFormatter()
     dateFormatter.setLocalizedDateFormatFromTemplate("dd MM")
-    let date = date(daysInFuture: 2)
+    let date = Date()
     let next = try next(for: date)
-    eventStoreMock.nextDate = next
-    eventStoreMock.age = 3
-    eventStoreMock.events = [Event(name: "Dummy", date: date)]
+    eventStoreMock.nextOccurrenceOfReturnValue = next
+    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: date)
+    let eventsPublisher = CurrentValueSubject<[Event], Never>([])
+    eventStoreMock.eventsPublisher = eventsPublisher
+    eventsPublisher.send([Event(name: "Dummy", date: date)])
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -96,16 +109,18 @@ class EventsListViewControllerTests: XCTestCase {
     XCTAssertEqual(cell.dateLabel.text, "turns 3 on \(dateFormatter.string(from: next))")
   }
 
-  func test_addEvent_shouldTriggerReload() {
+  func test_publishingEvents_shouldTriggerReload() {
     // arrange
     let eventStore = EventStoreProtocolMock()
+    let eventsPublisher = CurrentValueSubject<[Event], Never>([])
+    eventStore.eventsPublisher = eventsPublisher
+    eventsPublisher.send([Event(name: "Dummy One", date: Date())])
     sut.eventStore = eventStore
-    sut.eventStore?.add(Event(name: "Dummy One", date: Date()))
     sut.loadViewIfNeeded()
     XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
 
     // act
-    sut.eventStore?.add(Event(name: "Dummy Two", date: Date()))
+    eventsPublisher.send([Event(name: "Dummy One", date: Date()), Event(name: "Dummy Two", date: Date())])
 
     // assert
     XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 2)

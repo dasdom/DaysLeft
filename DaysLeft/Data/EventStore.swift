@@ -1,5 +1,5 @@
 //  Created by Dominik Hauser on 15.08.21.
-//  
+//
 //
 
 import Foundation
@@ -13,6 +13,7 @@ protocol EventStoreProtocol: AnyObject {
   func age(of event: Event) -> Int
   func numberOfEvents() -> Int
   func eventAt(index: Int) -> Event?
+  func update()
 }
 
 class EventStore: EventStoreProtocol {
@@ -124,5 +125,9 @@ class EventStore: EventStoreProtocol {
       print("\(#file) \(#line), #Error: \(error)")
       return
     }
+  }
+
+  func update() {
+    
   }
 }
