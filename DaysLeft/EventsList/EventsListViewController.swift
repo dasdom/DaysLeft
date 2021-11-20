@@ -75,6 +75,7 @@ class EventsListViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
+    eventStore?.update()
     tableView.reloadData()
   }
 }

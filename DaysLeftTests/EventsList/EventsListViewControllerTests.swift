@@ -29,7 +29,15 @@ class EventsListViewControllerTests: XCTestCase {
     XCTAssertEqual(tableViewIsSubview, true, "tableView should be subview")
   }
 
-  
+  func test_appearance_shouldAskEventStoreToUpdate() {
+    let eventStoreMock = EventStoreProtocolMock()
+    sut.eventStore = eventStoreMock
+
+    sut.beginAppearanceTransition(true, animated: false)
+    sut.endAppearanceTransition()
+
+    XCTAssertEqual(eventStoreMock.updateCallsCount, 1)
+  }
 
   func test_numberOfRows_shouldCallEventStore() {
     // arrange
@@ -51,7 +59,6 @@ class EventsListViewControllerTests: XCTestCase {
   func test_cellForRow_shouldSetName() throws {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
-    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: Date())
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
     eventsPublisher.send([Event(name: "Dummy", date: Date())])
@@ -70,7 +77,6 @@ class EventsListViewControllerTests: XCTestCase {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let notUsedDate = Date()
-    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: notUsedDate)
     eventStoreMock.remainingDaysUntilReturnValue = 42
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
@@ -94,7 +100,6 @@ class EventsListViewControllerTests: XCTestCase {
     let date = Date()
     let next = try next(for: date)
     eventStoreMock.nextOccurrenceOfReturnValue = next
-    eventStoreMock.eventAtIndexReturnValue = Event(name: "Dummy", date: date)
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
     eventsPublisher.send([Event(name: "Dummy", date: date)])

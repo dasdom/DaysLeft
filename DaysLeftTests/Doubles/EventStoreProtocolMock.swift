@@ -13,6 +13,7 @@ final class EventStoreProtocolMock: EventStoreProtocol {
   init() {
     ageOfReturnValue = 3
     remainingDaysUntilReturnValue = 42
+    underlyingEventsPublisher = CurrentValueSubject<[Event], Never>([])
   }
 
    // MARK: - eventsPublisher
@@ -123,7 +124,7 @@ final class EventStoreProtocolMock: EventStoreProtocol {
         eventAtIndexCallsCount += 1
         eventAtIndexReceivedIndex = index
         eventAtIndexReceivedInvocations.append(index)
-        return eventAtIndexClosure.map({ $0(index) }) ?? eventAtIndexReturnValue
+      return (eventAtIndexClosure.map({ $0(index) }) ?? eventAtIndexReturnValue) ?? underlyingEventsPublisher.value.last
     }
 
    // MARK: - update

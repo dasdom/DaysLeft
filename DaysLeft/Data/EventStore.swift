@@ -128,6 +128,6 @@ class EventStore: EventStoreProtocol {
   }
 
   func update() {
-    
+    events = events.sorted(by: { remainingDaysUntil($0) < remainingDaysUntil($1) })
   }
 }
