@@ -49,8 +49,8 @@ class EventCell: UITableViewCell {
     let stackView = UIStackView(arrangedSubviews: [thumbnailImageView, nameAndDateStackView, remainingDaysStackView]).forAutoLayout()
     stackView.spacing = 10
 
-    contentView.addSubview(stackView)
     addSubview(processMarker)
+    contentView.addSubview(stackView)
 
     let thumbnailHeightConstraint = thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor)
     thumbnailHeightConstraint.priority = UILayoutPriority(999)
@@ -67,7 +67,8 @@ class EventCell: UITableViewCell {
       thumbnailHeightConstraint,
 
       processMarker.leadingAnchor.constraint(equalTo: leadingAnchor),
-      processMarker.bottomAnchor.constraint(equalTo: bottomAnchor),
+//      processMarker.bottomAnchor.constraint(equalTo: bottomAnchor),
+      processMarker.centerYAnchor.constraint(equalTo: centerYAnchor),
       processMarker.heightAnchor.constraint(equalToConstant: 2),
     ])
 
@@ -85,7 +86,7 @@ extension EventCell {
       let image = UIImage(data: data)
       thumbnailImageView.image = image
     } else {
-      thumbnailImageView.image = nil
+      thumbnailImageView.image = imageDataFrom(firstName: event.name, lastName: event.lastName)
     }
     let name = [event.name, event.lastName].compactMap({ $0 }).joined(separator: " ")
     nameLabel.text = name
@@ -99,14 +100,43 @@ extension EventCell {
     let remainingDays = eventStore.remainingDaysUntil(event)
     remainingDaysLabel.text = "\(remainingDays)"
 
-    if remainingDays <= 7 {
-      processMarker.backgroundColor = UIColor(named: "red")
+    let color: UIColor?
+    if remainingDays <= 14 {
+      color = UIColor(named: "red")
+      processMarker.backgroundColor = color
     } else {
-      processMarker.backgroundColor = UIColor(named: "green")
+      color = UIColor(named: "green")
+      processMarker.backgroundColor = color
     }
+    
+    thumbnailImageView.layer.borderColor = color?.cgColor
+    thumbnailImageView.layer.borderWidth = 2
 
     processMarkerWidthConstraint?.isActive = false
     processMarkerWidthConstraint = processMarker.widthAnchor.constraint(equalTo: widthAnchor, multiplier: (1 - CGFloat(remainingDays) / 365.0))
     processMarkerWidthConstraint?.isActive = true
+  }
+
+  func imageDataFrom(firstName: String, lastName: String?) -> UIImage {
+    var initials = ""
+    if let character = firstName.first {
+      initials.append(contentsOf: character.uppercased())
+    }
+    if let character = lastName?.first {
+      initials.append(contentsOf: character.uppercased())
+    }
+
+    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    label.textColor = .white
+    label.backgroundColor = .gray
+    label.textAlignment = .center
+    label.font = .boldSystemFont(ofSize: 40)
+    label.text = initials
+
+    UIGraphicsBeginImageContext(label.frame.size)
+    label.layer.render(in: UIGraphicsGetCurrentContext()!)
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image!
   }
 }

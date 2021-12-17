@@ -26,8 +26,12 @@ struct Provider: TimelineProvider {
 //            entries.append(entry)
 //        }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+//      let calendar = Calendar.current
+//      let tomorrow = calendar.date(byAdding: .day, value: 1, to: Date()) ?? Date(timeIntervalSinceNow: 24 * 60 * 60)
+//      let tomorrowStartOfDay = calendar.date(bySettingHour: 0, minute: 0, second: 1, of: tomorrow) ?? Date(timeIntervalSinceNow: 60 * 60)
+//      let timeline = Timeline(entries: entries, policy: .after(tomorrowStartOfDay))
+      let timeline = Timeline(entries: entries, policy: .atEnd)
+      completion(timeline)
     }
 }
 
@@ -41,8 +45,8 @@ struct fourtytwodaysextensionEntryView : View {
     let eventStore = EventStore()
 
     var body: some View {
-      EventsListView(events: eventStore.events.prefix(5) , eventStore: eventStore)
-        .padding(8)
+      EventsListView(events: eventStore.events.prefix(4) , eventStore: eventStore)
+        .padding(10)
     }
 }
 

@@ -22,6 +22,7 @@ class EventStore: EventStoreProtocol {
   var eventsPublisher = CurrentValueSubject<[Event], Never>([])
   private(set) var events: [Event] = [] {
     didSet {
+      save(events)
       eventsPublisher.send(events)
     }
   }
@@ -42,12 +43,10 @@ class EventStore: EventStoreProtocol {
     }
     tempEvents.append(event)
     events = tempEvents.sorted(by: { remainingDaysUntil($0) < remainingDaysUntil($1) })
-    save(events)
   }
 
   func remove(event: Event) {
     events.removeAll(where: { $0 == event })
-    save(events)
   }
 
   func eventAt(index: Int) -> Event? {

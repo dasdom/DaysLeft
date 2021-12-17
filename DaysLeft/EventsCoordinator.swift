@@ -47,8 +47,13 @@ extension EventsCoordinator: EventInputViewDelegate {
       let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
       do {
         try contactStore.enumerateContacts(with: fetchRequest) { [weak self] contact, _ in
+
+          guard let self = self else {
+            return
+          }
+
           if let birthday = contact.birthday?.date {
-            self?.eventStore.add(Event(name: contact.givenName, lastName: contact.familyName, date: birthday, thumbnailData: contact.thumbnailImageData))
+            self.eventStore.add(Event(name: contact.givenName, lastName: contact.familyName, date: birthday, thumbnailData: contact.thumbnailImageData))
           }
         }
         DispatchQueue.main.async {

@@ -19,6 +19,7 @@ class EventsListViewController: UIViewController {
   var delegate: EventsListViewControllerDelegate?
   var eventStore: EventStoreProtocol?
   var token: AnyCancellable?
+  var notificationToken: AnyCancellable?
   let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.setLocalizedDateFormatFromTemplate("dd MM")
@@ -61,6 +62,10 @@ class EventsListViewController: UIViewController {
 
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addEvent(_:)))
     navigationItem.rightBarButtonItem = addButton
+
+    notificationToken = NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification).sink { [weak self] _ in
+      self?.tableView.reloadData()
+    }
 
     title = "Events"
   }
