@@ -27,6 +27,7 @@ class EventCell: UITableViewCell {
 
     let nameAndDateStackView = UIStackView(arrangedSubviews: [nameLabel, dateLabel])
     nameAndDateStackView.axis = .vertical
+    nameAndDateStackView.distribution = .fillEqually
 
     remainingDaysLabel = UILabel()
     remainingDaysLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -48,6 +49,7 @@ class EventCell: UITableViewCell {
 
     let stackView = UIStackView(arrangedSubviews: [thumbnailImageView, nameAndDateStackView, remainingDaysStackView]).forAutoLayout()
     stackView.spacing = 10
+    stackView.alignment = .center
 
     addSubview(processMarker)
     contentView.addSubview(stackView)
@@ -55,7 +57,7 @@ class EventCell: UITableViewCell {
     let thumbnailHeightConstraint = thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor)
     thumbnailHeightConstraint.priority = UILayoutPriority(999)
 
-    let thumbnailWidth: CGFloat = 40
+    let thumbnailWidth: CGFloat = 60
 
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

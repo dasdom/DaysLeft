@@ -85,6 +85,10 @@ class EventsListViewController: UIViewController {
   }
 }
 
+extension EventsListViewController: UITableViewDelegate {
+
+}
+
 // MARK: - Actions
 extension EventsListViewController {
   @objc func addEvent(_ sender: UIBarButtonItem) {

@@ -62,6 +62,8 @@ class EventsListViewControllerTests: XCTestCase {
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
     eventsPublisher.send([Event(name: "Dummy", date: Date())])
+    eventStoreMock.ageOfReturnValue = 42
+    eventStoreMock.remainingDaysUntilReturnValue = 200
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 
@@ -77,6 +79,7 @@ class EventsListViewControllerTests: XCTestCase {
     // arrange
     let eventStoreMock = EventStoreProtocolMock()
     let notUsedDate = Date()
+    eventStoreMock.ageOfReturnValue = 200
     eventStoreMock.remainingDaysUntilReturnValue = 42
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
@@ -103,6 +106,8 @@ class EventsListViewControllerTests: XCTestCase {
     let eventsPublisher = CurrentValueSubject<[Event], Never>([])
     eventStoreMock.eventsPublisher = eventsPublisher
     eventsPublisher.send([Event(name: "Dummy", date: date)])
+    eventStoreMock.ageOfReturnValue = 3
+    eventStoreMock.remainingDaysUntilReturnValue = 200
     sut.eventStore = eventStoreMock
     sut.loadViewIfNeeded()
 

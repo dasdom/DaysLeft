@@ -10,19 +10,13 @@ import Combine
 
 final class EventStoreProtocolMock: EventStoreProtocol {
 
-  init() {
-    ageOfReturnValue = 3
-    remainingDaysUntilReturnValue = 42
-    underlyingEventsPublisher = CurrentValueSubject<[Event], Never>([])
-  }
-
    // MARK: - eventsPublisher
 
     var eventsPublisher: CurrentValueSubject<[Event], Never> {
         get { underlyingEventsPublisher }
         set(value) { underlyingEventsPublisher = value }
     }
-    private var underlyingEventsPublisher: CurrentValueSubject<[Event], Never>!
+    private var underlyingEventsPublisher: CurrentValueSubject<[Event], Never>! = CurrentValueSubject<[Event], Never>([])
 
    // MARK: - add
 
@@ -138,5 +132,22 @@ final class EventStoreProtocolMock: EventStoreProtocol {
     func update() {
         updateCallsCount += 1
         updateClosure?()
+    }
+
+   // MARK: - remove
+
+    var removeEventCallsCount = 0
+    var removeEventCalled: Bool {
+        removeEventCallsCount > 0
+    }
+    var removeEventReceivedEvent: Event?
+    var removeEventReceivedInvocations: [Event] = []
+    var removeEventClosure: ((Event) -> Void)?
+
+    func remove(event: Event) {
+        removeEventCallsCount += 1
+        removeEventReceivedEvent = event
+        removeEventReceivedInvocations.append(event)
+        removeEventClosure?(event)
     }
 }

@@ -14,6 +14,7 @@ protocol EventStoreProtocol: AnyObject {
   func numberOfEvents() -> Int
   func eventAt(index: Int) -> Event?
   func update()
+  func remove(event: Event)
 }
 
 class EventStore: EventStoreProtocol {
